@@ -6,7 +6,7 @@
             <v-toolbar-side-icon @click="drawer =! drawer"></v-toolbar-side-icon>
 
             <v-toolbar-title class="text-uppercase white--text">
-                <span class ="font-weight-light">Pantalón</span>
+                <span class ="font-weight-light">Música</span>
                 </v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -36,6 +36,7 @@
                 <v-list-tile v-for="link in links" :key="link.text" :to="link.route">
                     <v-list-tile-action>
                         <v-icon class="white--text">{{link.icon}}</v-icon>
+                        
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title class="white--text">{{link.text}}</v-list-tile-title>
@@ -53,8 +54,9 @@ export default {
         return {
             drawer:false,
             links: [
-                { icon: 'dashboard', text: 'Dashboard', route: '/'},
-                { icon: 'person', text: 'Perfil', route: '/usuario'},
+                { icon: 'home', text: 'Dashboard', route: '/'},
+                { icon: 'person', text: 'Artistas', route: '/artistas'},
+                { icon: 'person', text: 'Géneros', route: '/generos'},
             ]
         }
     } 
@@ -65,5 +67,9 @@ export default {
 
 .v-toolbar{
     background-image: linear-gradient(90deg, #613DC1, #9395F2);
+}
+.v-navigation-drawer{
+    background-image: linear-gradient(90deg, #613DC1);
+
 }
 </style>
