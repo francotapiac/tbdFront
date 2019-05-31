@@ -1,4 +1,5 @@
 <template>
+
     <nav>
 
         <!-- Barra superior--> 
@@ -31,7 +32,7 @@
         </v-toolbar>
 
         <!-- Barra lateral izquierda --> 
-        <v-navigation-drawer app v-model="drawer" class="purple lighten-2">
+        <v-navigation-drawer app v-model="drawer" class="">
             <v-list>
                 <v-list-tile v-for="link in links" :key="link.text" :to="link.route">
                     <v-list-tile-action>
@@ -72,4 +73,5 @@ export default {
     background-image: linear-gradient(90deg, #613DC1);
 
 }
+
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div class="example">
+    
     <p>
       <label><b>Paletas</b> </label> &nbsp;
       <select @change="updateTheme">
@@ -15,7 +16,7 @@
         <option value="palette10">palette10</option>
       </select>
     </p>
-    <apexcharts
+    <apexcharts 
       width="100%"
       height="350"
       type="bar"
