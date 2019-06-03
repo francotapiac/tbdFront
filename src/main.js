@@ -9,10 +9,13 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'chart.js';
 import 'hchs-vue-charts';
+import Vuex from 'vuex';
+
 
 
 Vue.use(window.VueCharts);
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
+Vue.use(Vuex);
 
 Vue.config.productionTip = false
 

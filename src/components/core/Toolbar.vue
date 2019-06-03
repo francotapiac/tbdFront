@@ -58,7 +58,8 @@ export default {
                 { icon: 'home', text: 'Dashboard', route: '/'},
                 { icon: 'person', text: 'Artistas', route: '/artistas'},
                 { icon: 'person', text: 'Géneros', route: '/generos'},
-            ]
+            ],
+        
         }
     } 
 }

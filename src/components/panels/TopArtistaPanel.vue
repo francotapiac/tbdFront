@@ -1,34 +1,19 @@
 <template>
-  <v-layout row>
+  <v-layout row wrap>
     <v-flex xs12 sm12 offset-sm>
-      <v-card >
-
-        <v-toolbar color="cyan" dark>
-          <v-toolbar-title>Artistas más comentados</v-toolbar-title>
-          <v-spacer></v-spacer>
-        </v-toolbar>
-
+      <v-card pb-5 >
+        Ranking de los artistas más comentados
+        <v-divider></v-divider>
         <v-list two-line>
           <template v-for="(item, index) in items">
-            <v-subheader
-              v-if="item.header"
-              :key="item.header"
-            >
+             <!--Si es un header-->    
+            <v-subheader v-if="item.header" :key="item.header">
               {{ item.header }}
-            </v-subheader>
-
-            <v-divider
-              v-else-if="item.divider"
-              :key="index"
-              :inset="item.inset"
-            ></v-divider>
-
-            <v-list-tile
-              v-else
-              :key="item.title"
-              avatar
-              @click=""
-            >
+                </v-subheader>
+            <!--Si es un divider-->    
+            <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider>
+             <!--Si es un titulo-->    
+            <v-list-tile v-else :key="item.title" avatar @click="">
               <v-list-tile-avatar>
                 <img :src="item.avatar">
               </v-list-tile-avatar>
@@ -50,7 +35,7 @@
     data () {
       return {
         items: [
-          { header: 'Top 5' },
+          { header: 'Top 10' },
           {
             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
             title: 'Artista 1',
@@ -59,27 +44,29 @@
           { divider: true, inset: true },
           {
             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 1',
+            title: 'Artista 2',
             subtitle: "<span class='text--primary'>800 comentarios"
           },
           { divider: true, inset: true },
           {
             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 1',
+            title: 'Artista 3',
             subtitle: "<span class='text--primary'>800 comentarios"
           },
           { divider: true, inset: true },
           {
             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 1',
+            title: 'Artista 4',
             subtitle: "<span class='text--primary'>800 comentarios"
           },
           { divider: true, inset: true },
           {
             avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 1',
+            title: 'Artista 5',
             subtitle: "<span class='text--primary'>800 comentarios"
           },
+
+          
          
         ]
       }
