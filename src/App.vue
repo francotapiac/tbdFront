@@ -3,13 +3,12 @@
     <Toolbar/>
     <v-content>
         <router-view/>
-        <Footer/>
         <v-container>
         <!--dialogo dinámico-->
         <Dialogs/>
     </v-container>
-    </v-content>
-    
+    <Footer/>
+    </v-content> 
   </v-app>
 </template>
 

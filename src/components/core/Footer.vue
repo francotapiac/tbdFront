@@ -1,7 +1,7 @@
 <template>
-  <v-footer dark height="auto" >
+  <v-footer dark>
     <v-card class="flex" flat tile>
-      <v-card-title class="teal">
+      <v-card-title id="bottom" class="teal">
         <strong class="subheading">Encuentranos en en las siguientes plataformas.!</strong>
 
         <v-spacer></v-spacer>
@@ -11,7 +11,7 @@
         </v-btn>
       </v-card-title>
 
-      <v-card-actions class="grey darken-3 justify-center">
+      <v-card-actions id="bottom" class="grey darken-3 justify-center">
         &copy;2019 — <strong>Vuetify</strong>
       </v-card-actions>
     </v-card>
@@ -33,5 +33,9 @@
 </script>
 
 <style scope>
+
+#bottom{
+  background-image: linear-gradient(90deg, #613DC1, #9395F2) !important;
+}
 
 </style>

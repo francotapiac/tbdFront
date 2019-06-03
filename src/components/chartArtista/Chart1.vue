@@ -1,11 +1,18 @@
 <template>
   <div class="example">
-      Gráfico
       <v-divider></v-divider>
-      <v-card elevation = 5 >
+      <v-card elevation = 5>
+      <h1 id="tituloGrafico" class ="font-weight-light">Gráfico</h1>
       <p>
-        <label><b>Paletas</b> </label> &nbsp;
-        <select @change="updateTheme">
+        <v-flex xs12 sm6 d-flex>
+        <v-select
+          :items="items"
+          v-model="selectedItem"
+          label="Paletas"
+          @change="updateTheme"
+        ></v-select>
+      </v-flex>
+      <!--  <select @change="updateTheme">
           <option value="palette1">palette1</option>
           <option value="palette2">palette2</option>
           <option value="palette3">palette3</option>
@@ -16,7 +23,7 @@
           <option value="palette8">palette8</option>
           <option value="palette9">palette9</option>
           <option value="palette10">palette10</option>
-        </select>
+        </select>-->
       </p>
       
       <apexcharts 
@@ -40,6 +47,8 @@ export default {
   },
   data: function() {
     return {
+      selectedItem: undefined,
+      items: ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7','palette8','palette9'],
       chartOptions: {
         chart: {
           id: "basic-bar",
@@ -72,10 +81,18 @@ export default {
     updateTheme(e) {
       this.chartOptions = {
         theme: {
-          palette: e.target.value
+          palette: this.selectedItem
         }
       };
     }
   }
 };
 </script>
+
+<style scope>
+
+#tituloGrafico{
+  color:#613DC1 ;
+}
+
+</style>
