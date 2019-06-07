@@ -12,43 +12,7 @@
         <FirstCardHome/>
       </v-flex>
     </v-layout>
-
-    <!--Fila 2: Gráfico -->
-    <v-layout row wrap>
-      <!-- Primer panel: Gráfico artista -->
-      <v-flex xs12 md12>
-        <v-card elevation = 5>
-          <ChartArtista/>
-        </v-card>
-      </v-flex>
-      
-    </v-layout>
-   
-   <!--Fila 3: Gráfico -->
-    <v-layout row wrap pb-5>
-
-      <!-- Primer panel: Gráfico artista -->
-      <v-flex xs12 md4>
-        <v-card >
-          <ChartArtista/>
-        </v-card>
-      </v-flex>
-
-      <!-- Segundo panel:-->
-      <v-flex xs12 md4>
-        <v-card >
-          <ChartArtista/>
-        </v-card>
-      </v-flex>
-
-      <!-- Tercer panel-->
-      <v-flex xs12 md4>
-        <v-card >
-          <ChartArtista/>
-        </v-card>
-      </v-flex>
-      
-    </v-layout>
+  
 
     <!--Fila 4: Comentarios por componente -->
 
@@ -57,8 +21,8 @@
       <v-flex d-flex xs12 sm6 md8>
           <TopArtista/>
       </v-flex>
-
-      <!-- Segundo panel-->
+<!--
+      <!-- Segundo panel
       <v-flex d-flex xs12 md4>
         <v-card elevation = 5> 
           Comentarios en Twitter
@@ -70,6 +34,15 @@
             </v-flex>
           </v-card>
         </v-flex>
+-->
+<meta name="twitter:dnt" content="on">
+
+<v-flex
+<a class="twitter-share-button"
+href="https://twitter.com/share"
+data-dnt="true">
+Tweet</a>
+</v-flex>
       </v-layout>
     
 
@@ -79,6 +52,11 @@
 </v-container>
   </div>
 </template>
+
+<script async defer
+src="//platform.twitter.com/widgets.js"
+charset="utf-8">
+</script>
 
 <script>
 import FirstCardHome  from '@/components/panels/FirstCardHome'
