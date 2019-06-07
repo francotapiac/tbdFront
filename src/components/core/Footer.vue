@@ -35,7 +35,7 @@
 <style scope>
 
 #bottom{
-  background-image: linear-gradient(90deg, #613DC1, #9395F2) !important;
+  background-image: linear-gradient(90deg, #0B132B, #6FFFE9) !important;
 }
 
 </style>

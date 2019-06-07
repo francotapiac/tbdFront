@@ -68,10 +68,10 @@ export default {
 <style scope>
 
 .v-toolbar{
-    background-image: linear-gradient(90deg, #613DC1, #9395F2);
+    background-image: linear-gradient(90deg, #0B132B, #6FFFE9);
 }
 .v-navigation-drawer{
-    background-image: linear-gradient(90deg, #613DC1);
+    background-image: linear-gradient(90deg, #1C2541);
 
 }
 

@@ -43,7 +43,7 @@ export default {
 <style scope>
 
 #tituloSeccion{
-  color:#613DC1;
+  color:#5BC0BE;
 }
 
 </style>

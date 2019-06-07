@@ -56,9 +56,20 @@ export default {
             speed: 200
           }
         },
-        
+        legend: {
+          show: true,
+          showForSingleSeries: true,
+          position: 'bottom',
+          onItemClick: {
+            toggleDataSeries: true
+          },
+        },
+        title: {
+          text: 'hola',
+          aling: 'left'
+        },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         plotOptions: {
           bar: {
@@ -92,7 +103,7 @@ export default {
 <style scope>
 
 #tituloGrafico{
-  color:#613DC1 ;
+  color:#5BC0BE ;
 }
 
 </style>
