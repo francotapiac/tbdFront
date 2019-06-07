@@ -1,8 +1,9 @@
 <template>
     <div>
         <v-layout wrap>
-            <v-flex xs12>
 
+            <!--Fecha inicio-->
+            <v-flex xs6>
                 <!--Barra calendario-->
                 <v-dialog
                 ref="dialog"
@@ -13,30 +14,81 @@
                 full-width
                 width="290px"
                 >
-                    <template v-slot:activator="{ on }">
-                        <v-text-field
-                        v-model="fecha"
-                        label="Fecha inicial"
-                        prepend-icon="event"
-                        readonly
-                        v-on="on"
-                        ></v-text-field>
-                    </template>
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                    v-model="fecha.fechaInicio"
+                    label="Fecha inicial"
+                    prepend-icon="event"
+                    readonly
+                    v-on="on"
+                    ></v-text-field>
+                </template>
 
                 <!--calendario-->
                 <v-card>
                     <v-date-picker 
                     @input="menu = false"
-                    v-model="fecha" 
+                    v-model="fecha.fechaInicio" 
                    
                     locale="es-cl"
                     :min="minimo"
                     :max="maximo"
-                    @change="getDolar(fecha)"
+                    @change="getDolar(fecha.fechaInicio)"
                     >
                     <v-spacer></v-spacer>
                     <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                    <v-btn flat color="primary" @click="$refs.dialog.save(fecha)">OK</v-btn>
+                    <v-btn flat color="primary" @click="$refs.dialog.save(
+                        
+                    )">OK</v-btn>
+                    </v-date-picker>
+                </v-card>
+                
+                <!--Datos de calendario-->
+                <v-card color="error" dark>
+                    <v-card-text class="display-1 text-xs-center">
+                       {{valor}}
+                    </v-card-text>
+                </v-card>
+                </v-dialog>
+            </v-flex>
+
+            <!--Fecha Final-->
+            <v-flex xs6>
+                <!--Barra calendario-->
+                <v-dialog
+                ref="dialog"
+                v-model="modal"
+                :return-value.sync="fecha"
+                persistent
+                lazy
+                full-width
+                width="290px"
+                >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                    v-model="fecha.fechaFinal"
+                    prepend-icon="event"
+                    readonly
+                    v-on="on"
+                    ></v-text-field>
+                </template>
+
+                <!--calendario-->
+                <v-card>
+                    <v-date-picker 
+                    @input="menu = false"
+                    v-model="fecha.fechaFinal" 
+                   
+                    locale="es-cl"
+                    :min="minimo"
+                    :max="maximo"
+                    @change="getDolar(fecha.fechaFinal)"
+                    >
+                    <v-spacer></v-spacer>
+                    <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+                    <v-btn flat color="primary" @click="$refs.dialog.save(
+                        
+                    )">OK</v-btn>
                     </v-date-picker>
                 </v-card>
                 
@@ -62,7 +114,6 @@ export default {
     data(){
         return{
             modal: false,
-            fecha: new Date().toISOString().substr(0,10),
             minimo:'1984',
             maximo: new Date().toISOString().substr(0,10),
             valor:null
@@ -70,6 +121,7 @@ export default {
     },
     methods:{
        ...mapMutations(['mostrarLoading','ocultarLoading']),
+
         async getDolar(dia){
             let ddmmyy = dia.split('-').reverse().join('-')  
             try{
@@ -92,6 +144,12 @@ export default {
            
         }
     },
+
+    computed:{
+      ...mapState(['fecha'])
+
+    },
+    
     created(){
         this.getDolar(this.fecha)
     }
