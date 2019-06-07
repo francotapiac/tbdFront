@@ -33,38 +33,29 @@
             </v-flex>
             </v-flex>
           </v-card>
-        </v-flex>
--->
-<meta name="twitter:dnt" content="on">
+        </v-flex>      
+    -->
 
-<v-flex
-<a class="twitter-share-button"
-href="https://twitter.com/share"
-data-dnt="true">
-Tweet</a>
-</v-flex>
-      </v-layout>
-    
+    <ScrollTwitter/>
 
-    
+
+       
+    </v-layout>
 
 
 </v-container>
   </div>
 </template>
 
-<script async defer
-src="//platform.twitter.com/widgets.js"
-charset="utf-8">
-</script>
-
 <script>
 import FirstCardHome  from '@/components/panels/FirstCardHome'
 import SecondCardHome  from '@/components/panels/SecondCardHome'
 import ChartArtista  from '@/components/chartArtista/Chart1.vue'
 import TopArtista  from '@/components/panels/TopArtistaPanel.vue'
+import ScrollTwitter from '@/components/panels/ScrollTwitter.vue'
+
 export default {
-   components: {FirstCardHome,SecondCardHome,ChartArtista,TopArtista
+   components: {FirstCardHome,SecondCardHome,ChartArtista,TopArtista,ScrollTwitter
 
     },
   data () {
@@ -74,6 +65,7 @@ export default {
     }
     
   }
+  
 }
 </script>
 

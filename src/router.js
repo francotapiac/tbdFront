@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Generos from './views/Generos.vue'
 import Artistas from './views/Artistas.vue'
 
+
 Vue.use(Router)
 
 export default new Router({
