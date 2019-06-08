@@ -1,9 +1,9 @@
 <template>
 <div class="artistas">
-        <h1 id="tituloSeccion" class="font-weight-light">Artistas</h1>
-
-    
-
+  <v-container grid-list-xl text-xs-center>
+    <v-card>
+    <h1 id="tituloSeccion" class="font-weight-light">Artistas</h1>  
+    </v-card>
     <!--- Fila 1 -->
     <v-layout row wrap pb-5>
       <v-flex xs12 md12>
@@ -45,6 +45,7 @@ export default {
 
 #tituloSeccion{
   color:#5BC0BE;
+  font-size: 100px;
 }
 
 </style>
