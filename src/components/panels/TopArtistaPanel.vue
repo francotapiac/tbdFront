@@ -2,7 +2,9 @@
   <v-layout row wrap>
     <v-flex xs12 sm12 offset-sm>
       <v-card pb-5 >
-        Ranking de los artistas más comentados
+        <v-toolbar>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Ranking de los artistas más comentados</v-toolbar-title>
+        </v-toolbar>
         <v-divider></v-divider>
         <v-list two-line>
           <template v-for="(item, index) in items">
@@ -73,3 +75,12 @@
     }
   }
 </script>
+
+<style >
+
+#titulo-card{
+    color:#FFFFFF;
+    align-content: center;
+}
+
+</style>

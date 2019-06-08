@@ -2,10 +2,11 @@
         <v-layout row wrap  align-center justify-center fill-height>
             <v-flex v-for="link in links" :key="link.title" :to="link.route" xs12 sm4>
                 <v-card class="rounded-card" elevation = 5> 
-                    <v-list two-line>
-
+                  
                         <!--Sección titulo-->
-                        <div class="text-md-center ">{{link.title}}</div>
+                        <v-toolbar id="toolbar-card">
+                            <v-toolbar-title id="titulo-card" class ="font-weight-light">{{ link.title }}</v-toolbar-title>
+                        </v-toolbar>
                         <v-divider></v-divider>
                         <v-layout>
                             <!--Sección imagen-->
@@ -19,22 +20,19 @@
                                     <div>
                                         <div>{{link.text1}}</div>
                                         <div class="display-1 font-weight-black">{{link.number}}</div>
-                                        <div>{{link.text2}}</div>
-                                        
+                                        <div>{{link.text2}}</div>                                        
                                     </div>
                                 </v-card-title>
                                 <!--Sección texto-->
                                 <v-card-text> </v-card-text>
                             </v-flex>
                         </v-layout>
-
                         <v-divider></v-divider>
                         <!--Sección acciones-->
                         <v-card-actions class="justify-center">
-                            
-                            <v-btn color="info" v-bind:to="link.route" >Ver más</v-btn>
+                            <v-btn id="boton" v-bind:to="link.route" >Ver más</v-btn>
                         </v-card-actions>
-                    </v-list>
+                   
                 </v-card>
             </v-flex>
         </v-layout>
@@ -87,5 +85,19 @@ export default {
 .rounded-card{
     border-radius:8px;
 }
+#titulo-card{
+    color:#FFFFFF;
+    align-content: center;
+}
+
+#boton{
+    color: #FFFFFF;
+    background-color: #5BC0BE; 
+}
+
+#toolbar-card{
+    background-image: linear-gradient(90deg, #1C2541, #5BC0BE);
+}
+
 </style>
 

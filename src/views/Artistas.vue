@@ -1,7 +1,8 @@
 <template>
 <div class="artistas">
-  <v-container grid-list-xl text-xs-center>
-    <h1 id="tituloSeccion" class="font-weight-light">Artistas</h1>
+        <h1 id="tituloSeccion" class="font-weight-light">Artistas</h1>
+
+    
 
     <!--- Fila 1 -->
     <v-layout row wrap pb-5>

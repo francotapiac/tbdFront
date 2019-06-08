@@ -1,7 +1,6 @@
 <template>
 
     <nav>
-
         <!-- Barra superior--> 
         <v-toolbar  dark color="green" app>
             <v-toolbar-side-icon @click="drawer =! drawer"></v-toolbar-side-icon>
