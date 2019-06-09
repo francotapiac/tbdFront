@@ -40,12 +40,15 @@
 <script>
 import VueApexCharts from "vue-apexcharts";
 import axios from 'axios'
+import store from '@/store';
+import {mapState, mapMutations} from "vuex";
 
 export default {
   name: "Chart",
   components: {
     apexcharts: VueApexCharts
   },
+  store:store,
   data: function() {
     return {
       selectedItem: undefined,
@@ -66,7 +69,7 @@ export default {
           },
         },
         title: {
-          text: 'hola',
+          text: 'Géneros vs comentarios',
           aling: 'left'
         },
         dataLabels: {
@@ -81,13 +84,14 @@ export default {
       },
       series: [
         {
-          name: "series-1",
-          data: [30, 40, 45, 30, 49]
+          name: "N° comentarios",
+          data: []
         }
       ]
     };
   },
   methods: {
+    ...mapMutations(['mostrarLoading','ocultarLoading']),
     updateTheme(e) {
       this.chartOptions = {
         theme: {
@@ -96,23 +100,32 @@ export default {
       };
     }, 
     async actualizarGeneros(){
-      await axios.get('http://localhost:3000/generos')
-      .then(res=>{
-      console.log(res);
-      this.chartOptions = {
-        xaxis: {
-          categories: res.data.map(item => item.nombre)
+      try{
+        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        await axios.get('http://localhost:8080/genres/popularGenres')
+          .then(res=>{
+          console.log(res);
+          this.chartOptions = {
+            xaxis: {
+            categories: res.data.map(item => item.genero)
+          }
         }
-      }
       })
+      }catch{
+        consol.log(errror)
+      }
+      finally{
+        this.ocultarLoading()
+      }
+      
     },
 
     async actualizarComentarios(){
       let cantidadComentarios  = []
-      await axios.get('http://localhost:3000/comentarios_generos')
+      await axios.get('http://localhost:8080/genres/popularGenres')
       .then((res)=>{
         this.series = [{
-          data: res.data.map(item => item.cantidad)
+          data: res.data.map(item => item.total)
         }]
       })
       

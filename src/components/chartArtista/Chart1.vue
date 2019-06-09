@@ -39,13 +39,16 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
-import axios from 'axios'
+import store from '@/store';
+import axios from 'axios';
+import {mapState, mapMutations} from "vuex";
 
 export default {
   name: "Chart",
   components: {
     apexcharts: VueApexCharts
   },
+  store:store,
   data: function() {
     return {
       selectedItem: undefined,
@@ -82,12 +85,13 @@ export default {
       series: [
         {
           name: "series-1",
-          data: [30, 40, 45, 30, 49]
+          data: []
         }
       ]
     };
   },
   methods: {
+    ...mapMutations(['mostrarLoading','ocultarLoading']),
     updateTheme(e) {
       this.chartOptions = {
         theme: {
@@ -95,24 +99,33 @@ export default {
         }
       };
     }, 
-    async actualizarGeneros(){
-      await axios.get('http://localhost:3000/generos')
-      .then(res=>{
-      console.log(res);
-      this.chartOptions = {
-        xaxis: {
-          categories: res.data.map(item => item.nombre)
+    async actualizarArtistas(){
+      try{
+        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        await axios.get('http://localhost:8080/artists/popularArtists')
+          .then(res=>{
+          console.log(res);
+          this.chartOptions = {
+            xaxis: {
+            categories: res.data.map(item => item.artista)
+          }
         }
-      }
       })
+      }catch{
+        consol.log(errror)
+      }
+      finally{
+        this.ocultarLoading()
+      }
+      
     },
 
     async actualizarComentarios(){
       let cantidadComentarios  = []
-      await axios.get('http://localhost:3000/comentarios_generos')
+      await axios.get('http://localhost:8080/artists/popularArtists')
       .then((res)=>{
         this.series = [{
-          data: res.data.map(item => item.cantidad)
+          data: res.data.map(item => item.total)
         }]
       })
       
@@ -124,7 +137,7 @@ export default {
   },
 
   created(){
-    this.actualizarGeneros()
+    this.actualizarArtistas()
     this.actualizarComentarios()
   }
 

@@ -35,11 +35,11 @@
       
           <template v-for="(artista, index) in topArtistas">
             <v-divider :key="index"></v-divider>
-            <v-list-tile :key="artista.nombre" avatar @click="">
+            <v-list-tile :key="artista.artista" avatar @click="">
 
               <v-list-tile-content >
-                  <v-list-tile-title v-html="artista.nombre"></v-list-tile-title>
-                  <v-list-tile-sub-title v-html="artista.subtitle"></v-list-tile-sub-title>
+                  <v-list-tile-title v-html="artista.artista"></v-list-tile-title>
+                  <v-list-tile-sub-title>N° comentarios: {{artista.total}}</v-list-tile-sub-title>
                 </v-list-tile-content>
             </v-list-tile>
             
@@ -60,7 +60,7 @@ import axios from "axios";
       return {
 
         cantidadTop: 5,
-        header : 'top 10',
+        header : 'top 5',
         topArtistas: [],
       }
       
@@ -69,7 +69,7 @@ import axios from "axios";
     methods:{
       async getTopArtista(){
         try{
-          let artistas = await axios.get('http://localhost:3000/artistas',{
+          let artistas = await axios.get('http://localhost:8080/artists/popularArtists',{
             params: {
               limit: this.cantidadTop,
             }

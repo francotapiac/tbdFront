@@ -10,26 +10,23 @@
 <script>
 
 import VueApexCharts from "vue-apexcharts";
+import axios from 'axios'
+import store from '@/store';
+import {mapState, mapMutations} from "vuex";
 export default {
   name: "Chart",
   components: {
         apexchart: VueApexCharts,
       },
+      store:store,
       
       data: function() {
         return{
         series: [{
-            name: 'Males',
-            data: [0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2, 4.5,
-              3.9, 3.5, 3
-            ]
+            name: '',
+            data: []
           },
-          {
-            name: 'Females',
-            data: [-0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3, -4.4,
-              -4.1, -4, -4.1, -3.4, -3.1, -2.8
-            ]
-          }
+          
         ],
         chartOptions: {
           chart: {
@@ -57,8 +54,8 @@ export default {
             }
           },
           yaxis: {
-            min: -5,
-            max: 5,
+            min: -100,
+            max: 100,
             title: {
               // text: 'Age',
             },
@@ -80,12 +77,9 @@ export default {
             text: 'Mauritius population pyramid 2011'
           },
           xaxis: {
-            categories: ['85+', '80-84', '75-79', '70-74', '65-69', '60-64', '55-59', '50-54',
-              '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9',
-              '0-4'
-            ],
+           
             title: {
-              text: 'Percent'
+              text: 'Porcentaje'
             },
             labels: {
               formatter: function (val) {
@@ -95,6 +89,56 @@ export default {
           },
         }
       }
+      },
+
+      methods: {
+    ...mapMutations(['mostrarLoading','ocultarLoading']),
+ 
+    async actualizarGeneros(){
+      try{
+        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        await axios.get('http://localhost:8080/genres/getGenreStadistic')
+          .then(res=>{
+          console.log(res);
+          this.chartOptions = {
+            xaxis: {
+            categories: res.data.map(item => item.genre)
+          }
+        }
+      })
+      }catch{
+        consol.log(errror)
       }
+      finally{
+        this.ocultarLoading()
+      }
+      
+    },
+
+    async actualizarComentarios(){
+      let cantidadComentarios  = []
+      await axios.get('http://localhost:8080/genres/getGenreStadistic')
+      .then((res)=>{
+        console.log(res.data)
+        this.series = [{
+          name: 'Positivos',
+          data: res.data.map(item => item.positive*100/item.total)
+        },
+        { name: 'Negativos',
+          data: res.data.map(item => item.negative * -100/item.total)}
+        ]
+      })
+      
+     // this.chartOptions.series = await cantidadComentarios
+      
+      console.log(cantidadComentarios)
+    }
+
+  },
+
+  created(){
+    this.actualizarGeneros()
+    this.actualizarComentarios()
+  }
 };
 </script>
