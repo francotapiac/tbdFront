@@ -11,12 +11,6 @@
         <grafico1/>
       </v-flex>
     </v-layout>
-  
-
-
-
-       
-
 
 </v-container>
 
@@ -24,7 +18,7 @@
 </template>
 
 <script>
-import grafico1  from '@/components/chartArtista/Chart1'
+import grafico1  from '@/components/chartGenero/Chart1'
 
 
 export default {

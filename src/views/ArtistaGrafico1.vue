@@ -8,8 +8,8 @@
     <!--Fila 1 -->
     <v-layout row wrap pb-5>
       <v-flex xs12 md12>
-        <InfoGenero/>
-      </v-flex>
+        <grafico1/>
+     </v-flex>
     </v-layout>
   
 
@@ -24,24 +24,16 @@
 </template>
 
 <script>
-import InfoGenero  from '@/components/chartGenero/InfoGenero'
+import grafico1  from '@/components/chartArtista/Chart1'
 
 
 export default {
-   components: {InfoGenero
-
+   components: {grafico1
     },
   data () {
-      return {
-       
+      return {  
         
     }
-    
-  }
-  
+  } 
 }
 </script>
-
-
-
-
