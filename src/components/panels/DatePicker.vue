@@ -135,10 +135,10 @@ export default {
                     this.valor = 'Sin resultados'
                 }
             } catch (error){
-                console.log(error);
+                console.log(error)
             }
                 finally{
-                    this.ocultarLoading();
+                    this.ocultarLoading()
 
             }
            

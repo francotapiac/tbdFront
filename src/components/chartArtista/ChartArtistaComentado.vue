@@ -77,7 +77,9 @@ export default {
             distributed: true
           }
         },
-       
+        xaxis: {
+          categories: [2,4,6,5,5]
+        }
       },
       series: [
         {
@@ -95,39 +97,25 @@ export default {
         }
       };
     }, 
-    async actualizarGeneros(){
-      await axios.get('http://localhost:3000/generos')
-      .then(res=>{
-      console.log(res);
-      this.chartOptions = {
-        xaxis: {
-          categories: res.data.map(item => item.nombre)
-        }
+
+    async getNombreGeneros(){
+      try{
+        let generos = await axios.get('http://localhost:3000/generos')
+        
+        console.log(generos.data[0].nombre)
+      }catch{
+        console.log(error)
       }
-      })
-    },
+      finally{
 
-    async actualizarComentarios(){
-      let cantidadComentarios  = []
-      await axios.get('http://localhost:3000/comentarios_generos')
-      .then((res)=>{
-        this.series = [{
-          data: res.data.map(item => item.cantidad)
-        }]
-      })
-      
-     // this.chartOptions.series = await cantidadComentarios
-      
-      console.log(cantidadComentarios)
+      }
+
     }
-
   },
 
-  created(){
-    this.actualizarGeneros()
-    this.actualizarComentarios()
-  }
-
+created(){
+      this.getNombreGeneros()
+    }
  
 };
 </script>

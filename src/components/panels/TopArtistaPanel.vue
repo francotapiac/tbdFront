@@ -7,14 +7,15 @@
         </v-toolbar>
         <v-divider></v-divider>
         <v-list two-line>
-          <template v-for="(item, index) in items">
-             <!--Si es un header-->    
+          <!--
+          <template v-for="(artistas, index) in items">
+             Si es un header  
             <v-subheader v-if="item.header" :key="item.header">
               {{ item.header }}
                 </v-subheader>
-            <!--Si es un divider-->    
+            <!--Si es un divider    
             <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider>
-             <!--Si es un titulo-->    
+             <!--Si es un titulo-    
             <v-list-tile v-else :key="item.title" avatar @click="">
               <v-list-tile-avatar>
                 <img :src="item.avatar">
@@ -26,6 +27,25 @@
               </v-list-tile-content>
             </v-list-tile>
           </template>
+          -->
+          <v-subheader>
+              {{ header }}
+          </v-subheader>
+          <v-divider></v-divider> 
+      
+          <template v-for="(artista, index) in topArtistas">
+            <v-divider :key="index"></v-divider>
+            <v-list-tile :key="artista.nombre" avatar @click="">
+
+              <v-list-tile-content >
+                  <v-list-tile-title v-html="artista.nombre"></v-list-tile-title>
+                  <v-list-tile-sub-title v-html="artista.subtitle"></v-list-tile-sub-title>
+                </v-list-tile-content>
+            </v-list-tile>
+            
+
+          </template>
+
         </v-list>
       </v-card>
     </v-flex>
@@ -33,46 +53,49 @@
 </template>
 
 <script>
+import axios from "axios";
+
   export default {
     data () {
       return {
-        items: [
-          { header: 'Top 10' },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 1',
-            subtitle: "<span class='text--primary'>800 comentarios"
-          },
-          { divider: true, inset: true },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 2',
-            subtitle: "<span class='text--primary'>800 comentarios"
-          },
-          { divider: true, inset: true },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 3',
-            subtitle: "<span class='text--primary'>800 comentarios"
-          },
-          { divider: true, inset: true },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 4',
-            subtitle: "<span class='text--primary'>800 comentarios"
-          },
-          { divider: true, inset: true },
-          {
-            avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-            title: 'Artista 5',
-            subtitle: "<span class='text--primary'>800 comentarios"
-          },
 
-          
-         
-        ]
+        cantidadTop: 5,
+        header : 'top 10',
+        topArtistas: [],
       }
+      
+    },
+
+    methods:{
+      async getTopArtista(){
+        try{
+          let artistas = await axios.get('http://localhost:3000/artistas',{
+            params: {
+              limit: this.cantidadTop,
+            }
+            
+          })
+          this.topArtistas = artistas.data
+          console.log(artistas.data)
+        
+        }catch(error){
+          console.log(error)
+        }
+
+        finally{
+          
+        }
+      }
+    },
+
+    created(){
+      this.getTopArtista()
+      
+      
     }
+
+    
+
   }
 </script>
 

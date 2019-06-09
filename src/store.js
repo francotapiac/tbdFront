@@ -27,7 +27,7 @@ export default new Vuex.Store({
 
   mutations: {
     
-    //Mutations: para calendario
+    //Para calendario
     mostrarLoading(state,payload){
       state.loading.titulo = payload.titulo,
       state.loading.color = payload.color,
@@ -38,9 +38,15 @@ export default new Vuex.Store({
       state.loading.estado = false
     },
 
-    //Mutations: para tipo de información
+    //Para tipo de información
     cambiarTipoInformacion(state,tipo){
       state.tipoInformacion = tipo
+    },
+    
+    //Para fecha
+    cambiarFechaInicio(state,fecha){
+      state.fecha.fechaInicio = fecha
+
     }
   
 

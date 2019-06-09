@@ -103,7 +103,7 @@ export default {
             icon: 'music_video',
             items: [
               { title: 'Info géneros', route: '/generos', icon: 'list'},
-              { title: 'Gráfico1', route:'/artistas', icon:'equalizer' },
+              { title: 'Gráfico1', route:'/graficos1', icon:'equalizer' },
               {title:'Gráfico2', route: '/', icon:'equalizer'}
             ]
           },
