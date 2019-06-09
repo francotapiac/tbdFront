@@ -49,13 +49,11 @@
 
 <script>
 import FirstCardHome  from '@/components/panels/FirstCardHome'
-import SecondCardHome  from '@/components/panels/SecondCardHome'
-import ChartArtista  from '@/components/chartArtista/Chart1.vue'
 import TopArtista  from '@/components/panels/TopArtistaPanel.vue'
 import ScrollTwitter from '@/components/panels/ScrollTwitter.vue'
 
 export default {
-   components: {FirstCardHome,SecondCardHome,ChartArtista,TopArtista,ScrollTwitter
+   components: {FirstCardHome,TopArtista,ScrollTwitter
 
     },
   data () {
