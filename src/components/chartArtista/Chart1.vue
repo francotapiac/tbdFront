@@ -144,7 +144,7 @@ export default {
 
 <style scope>
 
-.breadcrumb ul li.current_item{
+.v-breadcrumbs-item{
   color:#5BC0BE !important;
 }
 

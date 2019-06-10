@@ -2,8 +2,8 @@
   <v-layout row wrap>
     <v-flex xs12 sm12 offset-sm>
       <v-card pb-5 >
-        <v-toolbar id="titulo-card">
-          <v-toolbar-title  class ="font-weight-light"> Ranking de los artistas más comentados</v-toolbar-title>
+        <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Ranking de los artistas más comentados</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <v-list two-line>
@@ -75,7 +75,10 @@ import axios from "axios";
 <style >
 
 #titulo-card{
-    background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
+    color:#FFFFFF;
+    align-content: center;
 }
-
+#grafico{  
+  background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
+}
 </style>
