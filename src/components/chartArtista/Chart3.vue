@@ -34,17 +34,16 @@ export default {
   data: function() {
     return {
       selectedItem: undefined,
-      items: ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7','palette8','palette9'],
-      items: [
+       items: [
         {
           text: 'Inicio',
           disabled: false,
           href: '/'
         },
         {
-          text: 'Artistas',
+          text: 'Géneros',
           disabled: false,
-          href: '#/artistas'
+          href: '#/generos'
         },
         {
           text: 'Popularidad en el tiempo',
@@ -96,36 +95,61 @@ export default {
   },
   methods: {
     ...mapMutations(['mostrarLoading','ocultarLoading']),
+
     async actualizarGeneros(){
       try{
       this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
-      await axios.get('http://localhost:8080/artists/popularArtists')
+      await axios.get('http://localhost:8080/genres/getbydate')
       .then(res=>{
-     
-      let nombreArtista = res.data.map(item => item.artista)
-      let totalGenero = res.data.map(item => item.total)
-       console.log(nombreArtista);
-      this.series = [{
-          name: nombreArtista[0],
-          data: [30, 40, 45, 30, 49]
+         let fechas = []
+         let listaArtistas = ['Noche de Brujas','Bad Bunny','Daddy Yankee']
+         let listasTotales1 = []
+         let listasTotales2 = []
+         let listasTotales3 = []
+
+        res.data.forEach(element => {
+           fechas.push(element[0].fecha)
+          element.forEach(item => {
+          
+          if(item.genero == listaArtistas[0]){
+            
+            listasTotales1.push(item.total)
+            console.log(listasTotalesPop)
+          }
+          if(item.genero == listaArtistas[1]){
+            listasTotales2.push(item.total)
+          }
+          if(item.genero == listaArtistas[2]){
+            listasTotales3.push(item.total)
+          }
+          });
+         
+         
+          
+        
+
+        });
+        
+        this.series = [{
+          name: listaArtistas[0],
+          data: listasTotales1
         },
         {
-           name: nombreArtista[1],
-          data: [20, 50, 35, 1, 30]
+          name: listaArtistas[1],
+          data: listasTotales2
         },
         {
-           name: nombreArtista[2],
-          data: [20, 530, 15, 20, 30]
-        },
-        {
-           name: nombreArtista[3],
-          data: [20, 502, 35, 1, 30]
-        },
-        {
-           name: nombreArtista[4],
-          data: [20, 501, 25, 1, 30]
-        },
-        ]
+          name: listaArtistas[2],
+          data: listasTotales3
+        },],
+      
+      this.chartOptions = {
+            xaxis: {
+            categories: fechas
+          }
+        }
+       
+      
       })
 
       }catch{
@@ -137,24 +161,12 @@ export default {
       }
     },
 
-     actualizarFechas(){
-     this.chartOptions = {
-            xaxis: {
-             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-          }
-        }
-      
-      
-     // this.chartOptions.series = await cantidadComentarios
-      
-   
-    }
 
   },
 
   created(){
     this.actualizarGeneros()
-    this.actualizarFechas()
+
     
   }
 

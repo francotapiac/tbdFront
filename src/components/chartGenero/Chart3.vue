@@ -95,36 +95,61 @@ export default {
   },
   methods: {
     ...mapMutations(['mostrarLoading','ocultarLoading']),
+
     async actualizarGeneros(){
       try{
       this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
-      await axios.get('http://localhost:8080/genres/obtenerPorFecha')
+      await axios.get('http://localhost:8080/genres/getbydate')
       .then(res=>{
-     
-      let nombreGenero = res.data.map(item => item.artist)
-      let totalGenero = res.data.map(item => item.positive + item.negative) 
-       console.log(nombreGenero);
-      this.series = [{
-          name: nombreGenero[0],
-          data: [30, 40, 45, 30, 49]
+         let fechas = []
+         let listasGeneros = ['pop','rock','reggaeton']
+         let listasTotalesPop = []
+         let listasTotalesRock = []
+         let listasTotalesReggaeton = []
+
+        res.data.forEach(element => {
+           fechas.push(element[0].fecha)
+          element.forEach(item => {
+          
+          if(item.genero == 'pop'){
+            
+            listasTotalesPop.push(item.total)
+            console.log(listasTotalesPop)
+          }
+          if(item.genero == 'rock'){
+            listasTotalesRock.push(item.total)
+          }
+          if(item.genero == 'reggaeton'){
+            listasTotalesReggaeton.push(item.total)
+          }
+          });
+         
+         
+          console.log(listasTotalesPop)
+        
+
+        });
+        console.log(listasTotalesPop)
+        this.series = [{
+          name: listasGeneros[0],
+          data: listasTotalesPop
         },
         {
-           name: nombreGenero[1],
-          data: [20, 50, 35, 1, 30]
+          name: listasGeneros[1],
+          data: listasTotalesRock
         },
         {
-           name: nombreGenero[2],
-          data: [20, 530, 15, 20, 30]
-        },
-        {
-           name: nombreGenero[3],
-          data: [20, 502, 35, 1, 30]
-        },
-        {
-           name: nombreGenero[4],
-          data: [20, 501, 25, 1, 30]
-        },
-        ]
+          name: listasGeneros[2],
+          data: listasTotalesReggaeton
+        },],
+      
+      this.chartOptions = {
+            xaxis: {
+            categories: fechas
+          }
+        }
+       
+      
       })
 
       }catch{
@@ -135,29 +160,13 @@ export default {
         this.ocultarLoading()
       }
     },
-  
-     async actualizarFechas(){
-     await axios.get('http://localhost:8080/genres/obtenerPorFecha')
-          .then(res=>{
-          console.log(res);
-          this.chartOptions = {
-            xaxis: {
-            categories: res.data.map(item => item.startDate)
-          }
-        }
-      })
-      
-      
-     // this.chartOptions.series = await cantidadComentarios
-      
-   
-    }
+
 
   },
 
   created(){
     this.actualizarGeneros()
-    this.actualizarFechas()
+
     
   }
 
