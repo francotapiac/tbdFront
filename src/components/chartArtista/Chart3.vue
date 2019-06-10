@@ -5,7 +5,7 @@
       <v-card elevation = 5>
 
       <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo géneros más comentados</v-toolbar-title>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo artistas más comentados</v-toolbar-title>
       </v-toolbar>
       
       <apexcharts 
@@ -102,25 +102,34 @@ export default {
       await axios.get('http://localhost:8080/artists/getbydate')
       .then(res=>{
          let fechas = []
-         let listaArtistas = ['Noche de Brujas','Bad Bunny','Daddy Yankee']
+         let listaArtistas = ['Noche de Brujas','Bad Bunny','Daddy Yankee','Queen','Rihanna']
          let listasTotales1 = []
          let listasTotales2 = []
          let listasTotales3 = []
+         let listasTotales4 = []
+         let listasTotales5 = []
+         
+
 
         res.data.forEach(element => {
            fechas.push(element[0].fecha)
           element.forEach(item => {
           
-          if(item.genero == listaArtistas[0]){
+          if(item.artista == listaArtistas[0]){
             
             listasTotales1.push(item.total)
-            console.log(listasTotalesPop)
           }
-          if(item.genero == listaArtistas[1]){
+          if(item.artista == listaArtistas[1]){
             listasTotales2.push(item.total)
           }
-          if(item.genero == listaArtistas[2]){
+          if(item.artista == listaArtistas[2]){
             listasTotales3.push(item.total)
+          }
+          if(item.artista == listaArtistas[3]){
+            listasTotales4.push(item.total)
+          }
+          if(item.artista == listaArtistas[4]){
+            listasTotales5.push(item.total)
           }
           });
          
@@ -141,6 +150,14 @@ export default {
         {
           name: listaArtistas[2],
           data: listasTotales3
+        },
+         {
+          name: listaArtistas[3],
+          data: listasTotales4
+        },
+         {
+          name: listaArtistas[4],
+          data: listasTotales5
         },],
       
       this.chartOptions = {
