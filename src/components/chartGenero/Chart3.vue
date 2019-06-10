@@ -21,13 +21,16 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
-import axios from 'axios'
+import store from '@/store';
+import axios from 'axios';
+import {mapState, mapMutations} from "vuex";
 
 export default {
   name: "Chart",
   components: {
     apexcharts: VueApexCharts
   },
+  store:store,
   data: function() {
     return {
       selectedItem: undefined,
@@ -49,6 +52,7 @@ export default {
         }
       ],
         chartOptions: {
+        
           chart: {
             shadow: {
               enabled: true,
@@ -90,37 +94,71 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['mostrarLoading','ocultarLoading']),
     async actualizarGeneros(){
-      await axios.get('http://localhost:3000/generos')
+      try{
+      this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+      await axios.get('http://localhost:8080/genres/obtenerPorFecha')
       .then(res=>{
-      console.log(res);
-      this.chartOptions = {
-        xaxis: {
-          categories: res.data.map(item => item.nombre)
-        }
-      }
+     
+      let nombreGenero = res.data.map(item => item.artist)
+      let totalGenero = res.data.map(item => item.positive + item.negative) 
+       console.log(nombreGenero);
+      this.series = [{
+          name: nombreGenero[0],
+          data: [30, 40, 45, 30, 49]
+        },
+        {
+           name: nombreGenero[1],
+          data: [20, 50, 35, 1, 30]
+        },
+        {
+           name: nombreGenero[2],
+          data: [20, 530, 15, 20, 30]
+        },
+        {
+           name: nombreGenero[3],
+          data: [20, 502, 35, 1, 30]
+        },
+        {
+           name: nombreGenero[4],
+          data: [20, 501, 25, 1, 30]
+        },
+        ]
       })
-    },
 
-    async actualizarComentarios(){
-      let cantidadComentarios  = []
-      await axios.get('http://localhost:3000/comentarios_generos')
-      .then((res)=>{
-        this.series = [{
-          data: res.data.map(item => item.cantidad)
-        }]
+      }catch{
+        console.log(error)
+
+      }
+      finally{
+        this.ocultarLoading()
+      }
+    },
+  
+     async actualizarFechas(){
+     await axios.get('http://localhost:8080/genres/obtenerPorFecha')
+          .then(res=>{
+          console.log(res);
+          this.chartOptions = {
+            xaxis: {
+            categories: res.data.map(item => item.startDate)
+          }
+        }
       })
+      
       
      // this.chartOptions.series = await cantidadComentarios
       
-      console.log(cantidadComentarios)
+   
     }
 
   },
 
   created(){
     this.actualizarGeneros()
-    this.actualizarComentarios()
+    this.actualizarFechas()
+    
   }
 
  

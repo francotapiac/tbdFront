@@ -98,7 +98,7 @@ export default {
     }, 
     async actualizarArtistas(){
       try{
-        this.mostrarLoading({titulo:'Accediendo a información',color:'blue'})
+        this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
         await axios.get('http://localhost:8080/artists/popularArtists')
           .then(res=>{
           console.log(res);

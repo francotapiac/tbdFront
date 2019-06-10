@@ -3,9 +3,11 @@
     <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
       <v-divider></v-divider>
       <v-card elevation = 5>
-       <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico popularidad en el tiempo de artistas</v-toolbar-title>
-       </v-toolbar>
+
+      <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo géneros más comentados</v-toolbar-title>
+      </v-toolbar>
+      
       <apexcharts 
         width="100%"
         height="350"
@@ -19,15 +21,20 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
-import axios from 'axios'
+import store from '@/store';
+import axios from 'axios';
+import {mapState, mapMutations} from "vuex";
 
 export default {
   name: "Chart",
   components: {
     apexcharts: VueApexCharts
   },
+  store:store,
   data: function() {
     return {
+      selectedItem: undefined,
+      items: ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7','palette8','palette9'],
       items: [
         {
           text: 'Inicio',
@@ -46,6 +53,7 @@ export default {
         }
       ],
         chartOptions: {
+        
           chart: {
             shadow: {
               enabled: true,
@@ -60,9 +68,9 @@ export default {
             }
           },
           colors: ['#77B6EA', '#545454'],
-          title:{
-             text: 'Nº de comentarios',
-             align: 'left'
+           title: {
+            text: 'Nº de comentarios',
+            align: 'left'
           },
           dataLabels: {
             enabled: true,
@@ -87,37 +95,67 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['mostrarLoading','ocultarLoading']),
     async actualizarGeneros(){
-      await axios.get('http://localhost:3000/generos')
+      try{
+      this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+      await axios.get('http://localhost:8080/artists/popularArtists')
       .then(res=>{
-      console.log(res);
-      this.chartOptions = {
-        xaxis: {
-          categories: res.data.map(item => item.nombre)
-        }
-      }
+     
+      let nombreArtista = res.data.map(item => item.artista)
+      let totalGenero = res.data.map(item => item.total)
+       console.log(nombreArtista);
+      this.series = [{
+          name: nombreArtista[0],
+          data: [30, 40, 45, 30, 49]
+        },
+        {
+           name: nombreArtista[1],
+          data: [20, 50, 35, 1, 30]
+        },
+        {
+           name: nombreArtista[2],
+          data: [20, 530, 15, 20, 30]
+        },
+        {
+           name: nombreArtista[3],
+          data: [20, 502, 35, 1, 30]
+        },
+        {
+           name: nombreArtista[4],
+          data: [20, 501, 25, 1, 30]
+        },
+        ]
       })
+
+      }catch{
+        console.log(error)
+
+      }
+      finally{
+        this.ocultarLoading()
+      }
     },
 
-    async actualizarComentarios(){
-      let cantidadComentarios  = []
-      await axios.get('http://localhost:3000/comentarios_generos')
-      .then((res)=>{
-        this.series = [{
-          data: res.data.map(item => item.cantidad)
-        }]
-      })
+     actualizarFechas(){
+     this.chartOptions = {
+            xaxis: {
+             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+          }
+        }
+      
       
      // this.chartOptions.series = await cantidadComentarios
       
-      console.log(cantidadComentarios)
+   
     }
 
   },
 
   created(){
     this.actualizarGeneros()
-    this.actualizarComentarios()
+    this.actualizarFechas()
+    
   }
 
  
@@ -126,10 +164,11 @@ export default {
 
 <style scope>
 
-#tituloGrafico{
-  color:#5BC0BE ;
+#titulo-card{
+    justify-content: flex-start;
 }
 #grafico{  
   background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
 }
+
 </style>
