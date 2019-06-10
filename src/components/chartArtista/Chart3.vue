@@ -99,7 +99,7 @@ export default {
     async actualizarGeneros(){
       try{
       this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
-      await axios.get('http://localhost:8080/genres/getbydate')
+      await axios.get('http://localhost:8080/artists/getbydate')
       .then(res=>{
          let fechas = []
          let listaArtistas = ['Noche de Brujas','Bad Bunny','Daddy Yankee']

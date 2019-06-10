@@ -102,9 +102,18 @@ export default {
       await axios.get('http://localhost:8080/genres/getbydate')
       .then(res=>{
          let fechas = []
-         let listasGeneros = ['pop','rock','reggaeton']
+         let listasGeneros = ['pop','rock','reggaeton','trap','techno','rap','metal','hip hop','electronica','dubstep','cumbia']
          let listasTotalesPop = []
          let listasTotalesRock = []
+      
+         let listasTotalesTrap = []
+         let listasTotalesTechno = []
+         let listasTotalesRap = []
+         let listasTotalesMetal = []
+         let listasTotalesHipHop = []
+         let listasTotalesElectronica = []
+         let listasTotalesDupstep = []
+         let listasTotalesCumbia = []
          let listasTotalesReggaeton = []
 
         res.data.forEach(element => {
@@ -121,6 +130,30 @@ export default {
           }
           if(item.genero == 'reggaeton'){
             listasTotalesReggaeton.push(item.total)
+          }
+          if(item.genero == 'trap'){
+            listasTotalesTrap.push(item.total)
+          }
+          if(item.genero == 'techno'){
+            listasTotalesTechno.push(item.total)
+          }
+          if(item.genero == 'rap'){
+            listasTotalesRap.push(item.total)
+          }
+          if(item.genero == 'metal'){
+            listasTotalesMetal.push(item.total)
+          }
+          if(item.genero == 'hip hop'){
+            listasTotalesHipHop.push(item.total)
+          }
+          if(item.genero == 'electronica'){
+            listasTotalesElectronica.push(item.total)
+          }
+          if(item.genero == 'dupstep'){
+            listasTotalesDupstep.push(item.total)
+          }
+          if(item.genero == 'cumbia'){
+            listasTotalesCumbia.push(item.total)
           }
           });
          
@@ -141,7 +174,41 @@ export default {
         {
           name: listasGeneros[2],
           data: listasTotalesReggaeton
-        },],
+        },
+         {
+          name: listasGeneros[3],
+          data: listasTotalesTrap
+        },
+         {
+          name: listasGeneros[4],
+          data: listasTotalesTechno
+        },
+         {
+          name: listasGeneros[5],
+          data: listasTotalesRap
+        },
+         {
+          name: listasGeneros[6],
+          data: listasTotalesMetal
+        },
+         {
+          name: listasGeneros[7],
+          data: listasTotalesHipHop
+        },
+         {
+          name: listasGeneros[8],
+          data: listasTotalesElectronica
+        },
+         {
+          name: listasGeneros[9],
+          data: listasTotalesDupstep
+        },
+         {
+          name: listasGeneros[10],
+          data: listasTotalesCumbia
+        },
+        
+        ],
       
       this.chartOptions = {
             xaxis: {
