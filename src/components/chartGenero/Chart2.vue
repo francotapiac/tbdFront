@@ -1,5 +1,6 @@
 <template>
   <div class="example">
+    <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
     <v-card elevation = 5>
 
     <v-toolbar id="grafico">
@@ -26,6 +27,23 @@ export default {
       
       data: function() {
         return{
+           items: [
+        {
+          text: 'Inicio',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Géneros',
+          disabled: false,
+          href: '#/generos'
+        },
+        {
+          text: 'Análisis de sentimientos',
+          disabled: true,
+          href: '#/artistasPopulares'
+        }
+      ],
         series: [{
             name: '',
             data: []

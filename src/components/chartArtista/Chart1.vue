@@ -46,7 +46,7 @@ export default {
         },
         {
           text: 'Artistas más comentados',
-          disabled: false,
+          disabled: true,
           href: '#/artistasPopulares'
         }
       ],
@@ -144,7 +144,7 @@ export default {
 
 <style scope>
 
-.v-breadcrumbs-item{
+.v-breadcrumbs.active{
   color:#5BC0BE !important;
 }
 

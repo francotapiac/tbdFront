@@ -55,12 +55,12 @@
                         <v-list-tile-title class="white--text" >{{link.text}}</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
-          <v-list-group v-for="item in items" :key="item.title" >
+          <v-list-group v-for="item in items" :key="item.title">
           
 
             <template v-slot:activator>
                     
-              <v-list-tile>
+              <v-list-tile :to="item.route">
                   <v-list-tile-action>
                 <v-icon class="white--text">{{item.icon}}</v-icon> 
                   </v-list-tile-action>
@@ -98,6 +98,7 @@ export default {
           {
             title: 'Géneros',
             icon: 'music_video',
+            route: '/generos',
             items: [
               { title: 'Información géneros', route: '/generos', icon: 'list'},
               { title: 'Géneros más comentados', route:'/generosPopulares', icon:'equalizer' },
@@ -108,14 +109,12 @@ export default {
         {
             title: 'Artistas',
             icon: 'group',
+            route: '/artistas',
             items:[
                 { title: 'Información artistas', route: '/artistas', icon: 'list'},
                 { title: 'Artistas más comentados', route: '/artistasPopulares', icon:'equalizer'},
                 { title: 'Análisis de sentimientos', route: '/artistasAnalisisSentimientos', icon:'equalizer'},
-                { title: 'Popularidad en el tiempo', route: '/artistasEnElTiempo', icon: 'equalizer'},
-
-
-                
+                { title: 'Popularidad en el tiempo', route: '/artistasEnElTiempo', icon: 'equalizer'}
             ]
 
         }

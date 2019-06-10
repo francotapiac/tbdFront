@@ -1,5 +1,6 @@
 <template>
   <div class="example">
+    <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
       <v-divider></v-divider>
       <v-card elevation = 5>
       <v-toolbar id="grafico">
@@ -28,7 +29,23 @@ export default {
   data: function() {
     return {
       selectedItem: undefined,
-      items: ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7','palette8','palette9'],
+       items: [
+        {
+          text: 'Inicio',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Géneros',
+          disabled: false,
+          href: '#/generos'
+        },
+        {
+          text: 'Géneros más comentados',
+          disabled: true,
+          href: '#/artistasPopulares'
+        }
+      ],
       chartOptions: {
         chart: {
           id: "basic-bar",

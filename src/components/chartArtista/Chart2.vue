@@ -1,5 +1,6 @@
 <template>
   <div class="example">
+    <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
     <v-card elevation = 5>
       <v-toolbar id="grafico">
           <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico comentarios positivos y negativos de artistas (%)</v-toolbar-title>
@@ -25,6 +26,23 @@ export default {
       
       data: function() {
         return{
+          items: [
+        {
+          text: 'Inicio',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Artistas',
+          disabled: false,
+          href: '#/artistas'
+        },
+        {
+          text: 'Análisis de sentimientos',
+          disabled: true,
+          href: '#/artistasPopulares'
+        }
+      ],
         series: [{
             name: '',
             data: []

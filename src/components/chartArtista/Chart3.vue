@@ -1,5 +1,6 @@
 <template>
   <div class="example">
+    <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
       <v-divider></v-divider>
       <v-card elevation = 5>
        <v-toolbar id="grafico">
@@ -27,6 +28,23 @@ export default {
   },
   data: function() {
     return {
+      items: [
+        {
+          text: 'Inicio',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Artistas',
+          disabled: false,
+          href: '#/artistas'
+        },
+        {
+          text: 'Popularidad en el tiempo',
+          disabled: true,
+          href: '#/artistasPopulares'
+        }
+      ],
         chartOptions: {
           chart: {
             shadow: {
