@@ -3,7 +3,7 @@
       <v-divider></v-divider>
       <v-card elevation = 5>
        <v-toolbar>
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo</v-toolbar-title>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico popularidad en el tiempo de artistas</v-toolbar-title>
        </v-toolbar>
       <apexcharts 
         width="100%"
@@ -42,6 +42,10 @@ export default {
             }
           },
           colors: ['#77B6EA', '#545454'],
+          title:{
+             text: 'Nº de comentarios',
+             align: 'left'
+          },
           dataLabels: {
             enabled: true,
           },

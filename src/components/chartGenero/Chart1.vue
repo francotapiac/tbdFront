@@ -3,37 +3,12 @@
       <v-divider></v-divider>
       <v-card elevation = 5>
       <v-toolbar>
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Generos más comentados</v-toolbar-title>
-          <v-menu bottom right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                dark
-                icon
-                v-on="on"
-              >
-                <v-icon>more_vert</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-tile
-                v-for="(item, i) in items"
-                :key="item"
-                @click="updateTheme(item)"
-              >
-                <v-list-tile-title>{{ item }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Géneros más comentados </v-toolbar-title>
+         
         </v-toolbar>
       
       
-      <apexcharts 
-        width="100%"
-        height="350"
-        type="bar"
-        :options="chartOptions"
-        :series="series"
-      ></apexcharts>
+     <apexcharts  width="100%" height="350" type="bar" :options="chartOptions" :series="series"></apexcharts>
   </v-card>
   </div>
 </template>
@@ -69,6 +44,10 @@ export default {
             toggleDataSeries: true
           },
         },
+         title: {
+          text: 'Nº de comentarios',
+          aling: 'left'
+        },
         dataLabels: {
           enabled: false,
         },
@@ -81,7 +60,7 @@ export default {
       },
       series: [
         {
-          name: "N° comentarios",
+          name: "Géneros musicales",
           data: []
         }
       ]
@@ -98,7 +77,7 @@ export default {
     }, 
     async actualizarGeneros(){
       try{
-        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        this.mostrarLoading({titulo:'Accediendo a información',color:'blue'})
         await axios.get('http://localhost:8080/genres/popularGenres')
           .then(res=>{
           console.log(res);
