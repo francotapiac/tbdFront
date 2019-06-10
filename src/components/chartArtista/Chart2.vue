@@ -1,8 +1,11 @@
 <template>
   <div class="example">
-  
-         <apexchart type=bar height=500 :options="chartOptions" :series="series" />
-
+    <v-card elevation = 5>
+      <v-toolbar>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Análisis de sentimientos</v-toolbar-title>
+      </v-toolbar>
+      <apexchart type=bar height=500 :options="chartOptions" :series="series" />
+    </v-card>
   </div>
 </template>
 
@@ -72,9 +75,6 @@ export default {
                 return Math.abs(val) + "%"
               }
             }
-          },
-          title: {
-            text: 'Mauritius population pyramid 2011'
           },
           xaxis: {
            

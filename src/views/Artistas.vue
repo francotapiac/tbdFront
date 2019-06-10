@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-
-    
-
 <v-container grid-list-xl text-xs-center>
 
     <!--Fila 1 -->
@@ -11,13 +8,6 @@
         <InfoArtista/>
       </v-flex>
     </v-layout>
-  
-
-
-
-       
-
-
 </v-container>
 
   </div>

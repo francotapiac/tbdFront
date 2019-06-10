@@ -75,7 +75,7 @@
               <v-list-tile-action>
                 <v-icon class="white--text">{{subItem.icon}}</v-icon> 
               </v-list-tile-action>
-                <v-list-sub-title class= "white-text">{{ subItem.title }}</v-list-sub-title>
+                <v-list-sub-title class= "white--text">{{ subItem.title }}</v-list-sub-title>
            
             </v-list-tile>
             
@@ -92,7 +92,7 @@ export default {
         return {
             drawer:false,
             links: [
-                { icon: 'library_music', text: 'Dashboard', route: '/'}
+                { icon: 'library_music', text: 'Inicio', route: '/'}
             ],
             items: [
           {

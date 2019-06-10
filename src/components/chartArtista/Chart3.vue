@@ -2,30 +2,9 @@
   <div class="example">
       <v-divider></v-divider>
       <v-card elevation = 5>
-      <h1 id="tituloGrafico" class ="font-weight-light">Gráfico</h1>
-      <p>
-        <v-flex xs12 sm6 d-flex>
-        <v-select
-          :items="items"
-          v-model="selectedItem"
-          label="Paletas"
-          @change="updateTheme"
-        ></v-select>
-      </v-flex>
-      <!--  <select @change="updateTheme">
-          <option value="palette1">palette1</option>
-          <option value="palette2">palette2</option>
-          <option value="palette3">palette3</option>
-          <option value="palette4">palette4</option>
-          <option value="palette5">palette5</option>
-          <option value="palette6">palette6</option>
-          <option value="palette7">palette7</option>
-          <option value="palette8">palette8</option>
-          <option value="palette9">palette9</option>
-          <option value="palette10">palette10</option>
-        </select>-->
-      </p>
-      
+       <v-toolbar>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo</v-toolbar-title>
+       </v-toolbar>
       <apexcharts 
         width="100%"
         height="350"
@@ -48,8 +27,6 @@ export default {
   },
   data: function() {
     return {
-      selectedItem: undefined,
-      items: ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7','palette8','palette9'],
         chartOptions: {
           chart: {
             shadow: {
@@ -71,10 +48,6 @@ export default {
           stroke: {
             curve: 'smooth'
           },
-          title: {
-            text: 'Average High & Low Temperature',
-            align: 'left'
-          },
           grid: {
             borderColor: '#e7e7e7',
             row: {
@@ -92,13 +65,6 @@ export default {
     };
   },
   methods: {
-    updateTheme(e) {
-      this.chartOptions = {
-        theme: {
-          palette: this.selectedItem
-        }
-      };
-    }, 
     async actualizarGeneros(){
       await axios.get('http://localhost:3000/generos')
       .then(res=>{

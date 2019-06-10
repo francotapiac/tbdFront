@@ -2,29 +2,30 @@
   <div class="example">
       <v-divider></v-divider>
       <v-card elevation = 5>
-      <h1 id="tituloGrafico" class ="font-weight-light">Gráfico</h1>
-      <p>
-        <v-flex xs12 sm6 d-flex>
-        <v-select
-          :items="items"
-          v-model="selectedItem"
-          label="Paletas"
-          @change="updateTheme"
-        ></v-select>
-      </v-flex>
-      <!--  <select @change="updateTheme">
-          <option value="palette1">palette1</option>
-          <option value="palette2">palette2</option>
-          <option value="palette3">palette3</option>
-          <option value="palette4">palette4</option>
-          <option value="palette5">palette5</option>
-          <option value="palette6">palette6</option>
-          <option value="palette7">palette7</option>
-          <option value="palette8">palette8</option>
-          <option value="palette9">palette9</option>
-          <option value="palette10">palette10</option>
-        </select>-->
-      </p>
+      <v-toolbar>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Generos más comentados</v-toolbar-title>
+          <v-menu bottom right>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                dark
+                icon
+                v-on="on"
+              >
+                <v-icon>more_vert</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-tile
+                v-for="(item, i) in items"
+                :key="item"
+                @click="updateTheme(item)"
+              >
+                <v-list-tile-title>{{ item }}</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+        </v-toolbar>
+      
       
       <apexcharts 
         width="100%"
@@ -67,10 +68,6 @@ export default {
           onItemClick: {
             toggleDataSeries: true
           },
-        },
-        title: {
-          text: 'Géneros vs comentarios',
-          aling: 'left'
         },
         dataLabels: {
           enabled: false,
