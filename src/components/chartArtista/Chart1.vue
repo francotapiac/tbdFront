@@ -2,28 +2,9 @@
   <div class="example">
       <v-divider></v-divider>
       <v-card elevation = 5>
-        <v-toolbar>
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Artistas más comentados</v-toolbar-title>
-          <v-menu bottom right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                dark
-                icon
-                v-on="on"
-              >
-                <v-icon>more_vert</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-tile
-                v-for="(item, i) in items"
-                :key="item"
-                @click="updateTheme(item)"
-              >
-                <v-list-tile-title>{{ item }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
+        <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico artistas más comentados</v-toolbar-title>
+
         </v-toolbar>
       <apexcharts 
         width="100%"
@@ -67,6 +48,10 @@ export default {
             toggleDataSeries: true
           },
         },
+       title: {
+          text: 'Nº de comentarios',
+          aling: 'left'
+        },
         dataLabels: {
           enabled: false,
         },
@@ -79,7 +64,7 @@ export default {
       },
       series: [
         {
-          name: "series-1",
+          name: "Artistas",
           data: []
         }
       ]
@@ -96,7 +81,7 @@ export default {
     }, 
     async actualizarArtistas(){
       try{
-        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        this.mostrarLoading({titulo:'Accediendo a información',color:'blue'})
         await axios.get('http://localhost:8080/artists/popularArtists')
           .then(res=>{
           console.log(res);
@@ -144,6 +129,10 @@ export default {
 
 #tituloGrafico{
   color:#5BC0BE ;
+}
+
+#grafico{  
+  background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
 }
 
 </style>

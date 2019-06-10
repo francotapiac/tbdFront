@@ -2,8 +2,8 @@
   <div class="example">
       <v-divider></v-divider>
       <v-card elevation = 5>
-       <v-toolbar>
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo</v-toolbar-title>
+       <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico popularidad en el tiempo de artistas</v-toolbar-title>
        </v-toolbar>
       <apexcharts 
         width="100%"
@@ -42,6 +42,10 @@ export default {
             }
           },
           colors: ['#77B6EA', '#545454'],
+          title:{
+             text: 'Nº de comentarios',
+             align: 'left'
+          },
           dataLabels: {
             enabled: true,
           },
@@ -107,5 +111,7 @@ export default {
 #tituloGrafico{
   color:#5BC0BE ;
 }
-
+#grafico{  
+  background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="example">
     <v-card elevation = 5>
-      <v-toolbar>
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Análisis de sentimientos</v-toolbar-title>
+      <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico comentarios positivos y negativos de artistas (%)</v-toolbar-title>
       </v-toolbar>
       <apexchart type=bar height=500 :options="chartOptions" :series="series" />
     </v-card>
@@ -35,13 +35,18 @@ export default {
           chart: {
             stacked: true
           },
-          colors: ['#008FFB', '#FF4560'],
+          colors: ['#FF4560','#74DA48'],
           plotOptions: {
             bar: {
               horizontal: true,
               barHeight: '80%',
 
             },
+          },
+           title: {
+             text: 'Artistas',
+            align: 'left'
+
           },
           dataLabels: {
             enabled: false
@@ -96,7 +101,7 @@ export default {
  
     async actualizarArtistas(){
       try{
-        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        this.mostrarLoading({titulo:'Accediendo a información',color:'blue'})
         await axios.get('http://localhost:8080/artists/getArtistStadistic')
           .then(res=>{
           console.log(res);
@@ -120,12 +125,14 @@ export default {
       await axios.get('http://localhost:8080/artists/getArtistStadistic')
       .then((res)=>{
         console.log(res.data)
-        this.series = [{
+            this.series = [{
+          name: 'Negativos',
+          data: res.data.map(item => item.negative * -100/item.total)
+          },
+        { 
           name: 'Positivos',
           data: res.data.map(item => item.positive*100/item.total)
-        },
-        { name: 'Negativos',
-          data: res.data.map(item => item.negative * -100/item.total)}
+        }
         ]
       })
       
@@ -142,3 +149,8 @@ export default {
   }
 };
 </script>
+<style>
+#grafico{  
+  background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
+}
+</style>

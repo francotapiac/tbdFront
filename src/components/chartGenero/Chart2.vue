@@ -1,8 +1,9 @@
 <template>
   <div class="example">
     <v-card elevation = 5>
+
     <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Análisis de sentimientos</v-toolbar-title>
+          <v-toolbar-title id="titulo-card" class ="font-weight-light">Comentarios positivos y negativos géneros musicales</v-toolbar-title>
     </v-toolbar>
     <apexchart type=bar height=500 :options="chartOptions" :series="series" />
     </v-card>
@@ -35,13 +36,17 @@ export default {
           chart: {
             stacked: true
           },
-          colors: ['#008FFB', '#FF4560'],
+          colors: [ '#FF4560','#74DA48'],
           plotOptions: {
             bar: {
               horizontal: true,
               barHeight: '80%',
 
             },
+          },
+          title: {
+            text: 'Géneros musicales ',
+            align: 'left'
           },
           dataLabels: {
             enabled: false
@@ -95,7 +100,7 @@ export default {
  
     async actualizarGeneros(){
       try{
-        this.mostrarLoading({titulo:'Accediendo a información',color:'secondary'})
+        this.mostrarLoading({titulo:'Accediendo a información',color:'blue'})
         await axios.get('http://localhost:8080/genres/getGenreStadistic')
           .then(res=>{
           console.log(res);
@@ -119,12 +124,14 @@ export default {
       await axios.get('http://localhost:8080/genres/getGenreStadistic')
       .then((res)=>{
         console.log(res.data)
-        this.series = [{
+          this.series = [{
+          name: 'Negativos',
+          data: res.data.map(item => item.negative * -100/item.total)
+          },
+        { 
           name: 'Positivos',
           data: res.data.map(item => item.positive*100/item.total)
-        },
-        { name: 'Negativos',
-          data: res.data.map(item => item.negative * -100/item.total)}
+        }
         ]
       })
       
