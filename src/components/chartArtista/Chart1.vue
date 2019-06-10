@@ -1,5 +1,6 @@
 <template>
   <div class="example">
+      <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
       <v-divider></v-divider>
       <v-card elevation = 5>
         <v-toolbar id="grafico">
@@ -32,7 +33,23 @@ export default {
   data: function() {
     return {
       selectedItem: undefined,
-      items: ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7','palette8','palette9'],
+      items: [
+        {
+          text: 'Inicio',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'Artistas',
+          disabled: false,
+          href: '#/artistas'
+        },
+        {
+          text: 'Artistas más comentados',
+          disabled: false,
+          href: '#/artistasPopulares'
+        }
+      ],
       chartOptions: {
         chart: {
           id: "basic-bar",
@@ -127,8 +144,8 @@ export default {
 
 <style scope>
 
-#tituloGrafico{
-  color:#5BC0BE ;
+.breadcrumb ul li.current_item{
+  color:#5BC0BE !important;
 }
 
 #grafico{  
