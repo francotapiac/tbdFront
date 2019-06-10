@@ -1,7 +1,7 @@
 <template>
   <div class="example">
     <v-card elevation = 5>
-    <v-toolbar>
+    <v-toolbar id="grafico">
           <v-toolbar-title id="titulo-card" class ="font-weight-light"> Análisis de sentimientos</v-toolbar-title>
     </v-toolbar>
     <apexchart type=bar height=500 :options="chartOptions" :series="series" />
@@ -141,3 +141,9 @@ export default {
   }
 };
 </script>
+
+<style>
+#grafico{  
+  background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
+}
+</style>

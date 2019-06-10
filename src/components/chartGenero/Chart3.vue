@@ -2,8 +2,8 @@
   <div class="example">
       <v-divider></v-divider>
       <v-card elevation = 5>
-      <v-toolbar>
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo</v-toolbar-title>
+      <v-toolbar id="grafico" >
+          <v-toolbar-title align-center id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo</v-toolbar-title>
       </v-toolbar>
       
       <apexcharts 
@@ -107,8 +107,11 @@ export default {
 
 <style scope>
 
-#tituloGrafico{
-  color:#5BC0BE ;
+#titulo-card{
+    justify-content: flex-start;
+}
+#grafico{  
+  background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
 }
 
 </style>

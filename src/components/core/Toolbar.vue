@@ -2,7 +2,7 @@
 
     <nav>
         <!-- Barra superior--> 
-        <v-toolbar  dark color="green" app>
+        <v-toolbar id="test"  dark color="green" app>
             <v-toolbar-side-icon @click="drawer =! drawer"></v-toolbar-side-icon>
 
             <v-toolbar-title class="text-uppercase white--text">
@@ -129,12 +129,11 @@ export default {
 
 <style scope>
 
-.v-toolbar{
+#test{
     background-image: linear-gradient(90deg, #0B132B, #6FFFE9);
 }
 .v-navigation-drawer{
     background-image: linear-gradient(90deg, #1C2541);
-
 }
 
 </style>
