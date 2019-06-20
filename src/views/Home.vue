@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="home">
 
     
 
@@ -68,6 +68,9 @@ export default {
 </script>
 
 <style>
+#home{
+  
+}
 .v-card--reveal {
   align-items: center;
   bottom: 0;

@@ -144,11 +144,11 @@ export default {
         console.log(res.data)
           this.series = [{
           name: 'Negativos',
-          data: res.data.map(item => item.negative * -100/item.total)
+          data: res.data.map((item => item.negative * -100/item.total).toFixed(2))
           },
         { 
           name: 'Positivos',
-          data: res.data.map(item => item.positive*100/item.total)
+          data: res.data.map((item => item.positive*100/item.total).toFixed(2))
         }
         ]
       })

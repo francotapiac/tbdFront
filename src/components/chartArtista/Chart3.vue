@@ -98,11 +98,19 @@ export default {
 
     async actualizarGeneros(){
       try{
+      let listaArtistas = [] 
       this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+      await axios.get('http://localhost:8080/artists/popularArtists')
+        .then(res=>{
+          listaArtistas = res.data.map(item=>item.artista)
+          
+        }
+      )
+      
+
       await axios.get('http://localhost:8080/artists/getbydate')
       .then(res=>{
          let fechas = []
-         let listaArtistas = ['Noche de Brujas','Bad Bunny','Daddy Yankee','Queen','Rihanna']
          let listasTotales1 = []
          let listasTotales2 = []
          let listasTotales3 = []
@@ -132,14 +140,12 @@ export default {
             listasTotales5.push(item.total)
           }
           });
-         
-         
           
-        
 
         });
         
         this.series = [{
+          
           name: listaArtistas[0],
           data: listasTotales1
         },

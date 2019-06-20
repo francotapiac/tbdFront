@@ -1,4 +1,5 @@
 <template>
+<div id="app">
   <v-app>
     <Toolbar/>
     <v-content>
@@ -10,6 +11,7 @@
     <Footer/>
     </v-content> 
   </v-app>
+</div>
 </template>
 
 
@@ -30,3 +32,9 @@ export default {
   
 }
 </script>
+
+<style>
+  
+
+</style>
+

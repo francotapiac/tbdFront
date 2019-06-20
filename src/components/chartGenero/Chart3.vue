@@ -98,114 +98,70 @@ export default {
 
     async actualizarGeneros(){
       try{
+      let listasGeneros = []
       this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+      //Obteniendo datos de generos más populares
+      await axios.get('http://localhost:8080/genres/popularGenres')
+      .then(res=>{
+        listasGeneros = res.data.map(item=>item.genero)
+      })
+      //Obteniendo datos de géneros según fechas
       await axios.get('http://localhost:8080/genres/getbydate')
       .then(res=>{
-         let fechas = []
-         let listasGeneros = ['pop','rock','reggaeton','trap','techno','rap','metal','hip hop','electronica','dubstep','cumbia']
-         let listasTotalesPop = []
-         let listasTotalesRock = []
-      
-         let listasTotalesTrap = []
-         let listasTotalesTechno = []
-         let listasTotalesRap = []
-         let listasTotalesMetal = []
-         let listasTotalesHipHop = []
-         let listasTotalesElectronica = []
-         let listasTotalesDupstep = []
-         let listasTotalesCumbia = []
-         let listasTotalesReggaeton = []
+        let fechas = []
+        let listasTotales1 = []
+        let listasTotales2 = []
+        let listasTotales3 = []
+        let listasTotales4 = []
+        let listasTotales5 = []
 
         res.data.forEach(element => {
            fechas.push(element[0].fecha)
           element.forEach(item => {
           
-          if(item.genero == 'pop'){
-            
-            listasTotalesPop.push(item.total)
-            console.log(listasTotalesPop)
+          if(item.genero == listasGeneros[0]){
+            listasTotales1.push(item.total)
           }
-          if(item.genero == 'rock'){
-            listasTotalesRock.push(item.total)
+          if(item.genero == listasGeneros[1]){
+            listasTotales2.push(item.total)
           }
-          if(item.genero == 'reggaeton'){
-            listasTotalesReggaeton.push(item.total)
+          if(item.genero == listasGeneros[2]){
+            listasTotales3.push(item.total)
           }
-          if(item.genero == 'trap'){
-            listasTotalesTrap.push(item.total)
+          if(item.genero == listasGeneros[3]){
+            listasTotales4.push(item.total)
           }
-          if(item.genero == 'techno'){
-            listasTotalesTechno.push(item.total)
+          if(item.genero == listasGeneros[4]){
+            listasTotales5.push(item.total)
           }
-          if(item.genero == 'rap'){
-            listasTotalesRap.push(item.total)
-          }
-          if(item.genero == 'metal'){
-            listasTotalesMetal.push(item.total)
-          }
-          if(item.genero == 'hip hop'){
-            listasTotalesHipHop.push(item.total)
-          }
-          if(item.genero == 'electronica'){
-            listasTotalesElectronica.push(item.total)
-          }
-          if(item.genero == 'dupstep'){
-            listasTotalesDupstep.push(item.total)
-          }
-          if(item.genero == 'cumbia'){
-            listasTotalesCumbia.push(item.total)
-          }
+          
           });
          
          
-          console.log(listasTotalesPop)
+      
         
 
         });
-        console.log(listasTotalesPop)
+    
         this.series = [{
           name: listasGeneros[0],
-          data: listasTotalesPop
+          data: listasTotales1
         },
         {
           name: listasGeneros[1],
-          data: listasTotalesRock
+          data: listasTotales2
         },
         {
           name: listasGeneros[2],
-          data: listasTotalesReggaeton
+          data: listasTotales3
         },
          {
           name: listasGeneros[3],
-          data: listasTotalesTrap
+          data: listasTotales4
         },
          {
           name: listasGeneros[4],
-          data: listasTotalesTechno
-        },
-         {
-          name: listasGeneros[5],
-          data: listasTotalesRap
-        },
-         {
-          name: listasGeneros[6],
-          data: listasTotalesMetal
-        },
-         {
-          name: listasGeneros[7],
-          data: listasTotalesHipHop
-        },
-         {
-          name: listasGeneros[8],
-          data: listasTotalesElectronica
-        },
-         {
-          name: listasGeneros[9],
-          data: listasTotalesDupstep
-        },
-         {
-          name: listasGeneros[10],
-          data: listasTotalesCumbia
+          data: listasTotales5
         },
         
         ],
