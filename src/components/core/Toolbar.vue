@@ -10,23 +10,6 @@
                 </v-toolbar-title>
 
             <v-spacer></v-spacer>
-
-            <v-btn icon>
-            <v-icon>search</v-icon>
-            </v-btn>
-
-            <v-btn icon>
-            <v-icon>apps</v-icon>
-            </v-btn>
-
-            <v-btn icon>
-            <v-icon>refresh</v-icon>
-            </v-btn>
-
-            <v-btn icon>
-            <v-icon>more_vert</v-icon>
-            </v-btn>
-            
             
         </v-toolbar>
 
@@ -71,7 +54,7 @@
 
             </template>
 
-            <v-list-tile v-for="subItem in item.items" :key="subItem.title" :to="subItem.route">
+            <v-list-tile id="hola" v-for="subItem in item.items" :key="subItem.title" :to="subItem.route">
               <v-list-tile-action>
                 <v-icon class="white--text">{{subItem.icon}}</v-icon> 
               </v-list-tile-action>
@@ -135,4 +118,7 @@ export default {
     background-image: linear-gradient(90deg, #1C2541);
 }
 
+#hola{
+    background-color: #5BC0BE !important;
+}
 </style>

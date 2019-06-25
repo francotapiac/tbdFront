@@ -2,8 +2,6 @@
   <v-footer dark absolute="true">
     <v-card class="flex" flat tile>
       <v-card-title id="bottom" class="teal">
-        <strong class="subheading">Encuentranos en en las siguientes plataformas.!</strong>
-
         <v-spacer></v-spacer>
 
         <v-btn v-for="icon in icons" :key="icon" class="mx-3" dark icon>
@@ -12,7 +10,6 @@
       </v-card-title>
 
       <v-card-actions id="bottom" class="grey darken-3 justify-center">
-        &copy;2019 — <strong>Vuetify</strong>
       </v-card-actions>
     </v-card>
   </v-footer>
