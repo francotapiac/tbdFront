@@ -117,6 +117,17 @@ export default {
                 { title: 'Popularidad en el tiempo', route: '/artistasEnElTiempo', icon: 'equalizer'}
             ]
 
+        },
+        {
+            title: 'Grafos',
+            icon: 'filter_tilt_shift',
+            route: '/grafos',
+            items: [
+                {title: 'Grafo 1', route: '/grafo1'},
+                {title: 'Grafo 2', route: '/grafo2'},
+                {title: 'Grafo 3', route: '/grafo3'},
+
+            ]
         }
         ]
       }
