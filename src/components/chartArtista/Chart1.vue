@@ -4,7 +4,7 @@
       <v-divider></v-divider>
       <v-card elevation = 5>
         <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico artistas más comentados</v-toolbar-title>
+          <v-toolbar-title id="titulo-card"> Gráfico artistas más comentados</v-toolbar-title>
 
         </v-toolbar>
       <apexcharts 
@@ -59,18 +59,28 @@ export default {
         },
         legend: {
           show: true,
-          showForSingleSeries: true,
+          showForSingleSeries: false,
           position: 'bottom',
           onItemClick: {
             toggleDataSeries: true
           },
         },
        title: {
-          text: 'Nº de comentarios',
+          text: '',
           aling: 'left'
         },
         dataLabels: {
           enabled: false,
+        },
+          yaxis:{
+          title: {
+            text: 'Nº de comentarios'
+          }
+        },
+        xaxis:{
+          title: {
+            text: 'Artistas'
+          }
         },
         plotOptions: {
           bar: {
@@ -81,7 +91,7 @@ export default {
       },
       series: [
         {
-          name: "Artistas",
+          name: [],
           data: []
         }
       ]

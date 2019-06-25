@@ -4,7 +4,7 @@
     <v-card elevation = 5>
 
     <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light">Comentarios positivos y negativos géneros musicales</v-toolbar-title>
+          <v-toolbar-title id="titulo-card">Comentarios positivos y negativos géneros musicales</v-toolbar-title>
     </v-toolbar>
     <apexchart type=bar height=500 :options="chartOptions" :series="series" />
     </v-card>
@@ -63,7 +63,7 @@ export default {
             },
           },
           title: {
-            text: 'Géneros musicales ',
+            
             align: 'left'
           },
           dataLabels: {
@@ -101,12 +101,17 @@ export default {
           },
           xaxis: {
             title: {
-              text: 'Porcentaje'
+              text: 'Porcentaje (%)'
             },
             labels: {
               formatter: function (val) {
                 return Math.abs(Math.round(val)) + "%"
               }
+            }
+          },
+          yaxis:{
+            title:{
+              text: 'Géneros musicales'
             }
           },
         }
@@ -144,11 +149,11 @@ export default {
         console.log(res.data)
           this.series = [{
           name: 'Negativos',
-          data: res.data.map((item => item.negative * -100/item.total).toFixed(2))
+          data: res.data.map(item => (item.negative * -100/item.total).toFixed(2))
           },
         { 
           name: 'Positivos',
-          data: res.data.map((item => item.positive*100/item.total).toFixed(2))
+          data: res.data.map(item => (item.positive*100/item.total).toFixed(2))
         }
         ]
       })

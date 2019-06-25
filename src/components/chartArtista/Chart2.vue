@@ -3,7 +3,7 @@
     <v-breadcrumbs id="indice" :items="items" divider=">"></v-breadcrumbs>
     <v-card elevation = 5>
       <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Gráfico comentarios positivos y negativos de artistas (%)</v-toolbar-title>
+          <v-toolbar-title id="titulo-card"> Gráfico comentarios positivos y negativos de artistas (%)</v-toolbar-title>
       </v-toolbar>
       <apexchart type=bar height=500 :options="chartOptions" :series="series" />
     </v-card>
@@ -62,7 +62,7 @@ export default {
             },
           },
            title: {
-             text: 'Artistas',
+             text: '',
             align: 'left'
 
           },
@@ -83,7 +83,7 @@ export default {
             min: -100,
             max: 100,
             title: {
-              // text: 'Age',
+               text: 'Artistas',
             },
           },
           tooltip: {

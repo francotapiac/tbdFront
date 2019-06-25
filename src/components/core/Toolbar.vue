@@ -10,6 +10,23 @@
                 </v-toolbar-title>
 
             <v-spacer></v-spacer>
+            <!--
+            <v-btn icon>
+            <v-icon>search</v-icon>
+            </v-btn>
+
+            <v-btn icon>
+            <v-icon>apps</v-icon>
+            </v-btn>
+
+            <v-btn icon>
+            <v-icon>refresh</v-icon>
+            </v-btn>
+
+            <v-btn icon>
+            <v-icon>more_vert</v-icon>
+            </v-btn>
+            -->
             
         </v-toolbar>
 
@@ -56,9 +73,9 @@
 
             <v-list-tile id="hola" v-for="subItem in item.items" :key="subItem.title" :to="subItem.route">
               <v-list-tile-action>
-                <v-icon class="white--text">{{subItem.icon}}</v-icon> 
               </v-list-tile-action>
                 <v-list-sub-title class= "white--text">{{ subItem.title }}</v-list-sub-title>
+               <!--  <v-icon class="white--text">{{subItem.icon}}</v-icon>  -->
            
             </v-list-tile>
             
