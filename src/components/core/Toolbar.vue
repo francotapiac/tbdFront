@@ -71,7 +71,7 @@
 
             </template>
 
-            <v-list-tile id="hola" v-for="subItem in item.items" :key="subItem.title" :to="subItem.route">
+            <v-list-tile id="subitem" v-for="subItem in item.items" :key="subItem.title" :to="subItem.route">
               <v-list-tile-action>
               </v-list-tile-action>
                 <v-list-sub-title class= "white--text">{{ subItem.title }}</v-list-sub-title>
@@ -135,7 +135,7 @@ export default {
     background-image: linear-gradient(90deg, #1C2541);
 }
 
-#hola{
+#subitem{
     background-color: #5BC0BE !important;
 }
 </style>
