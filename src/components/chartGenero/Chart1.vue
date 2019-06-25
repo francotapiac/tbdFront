@@ -4,11 +4,11 @@
       <v-divider></v-divider>
       <v-card elevation = 5>
       <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Géneros más comentados </v-toolbar-title>
-         
+          <v-toolbar-title id="titulo-card"> Géneros más comentados </v-toolbar-title>
+  
         </v-toolbar>
       
-      
+    
      <apexcharts  width="100%" height="350" type="bar" :options="chartOptions" :series="series"></apexcharts>
   </v-card>
   </div>
@@ -54,7 +54,7 @@ export default {
           }
         },
         legend: {
-          show: true,
+          show: false,
           showForSingleSeries: true,
           position: 'bottom',
           onItemClick: {
@@ -62,11 +62,21 @@ export default {
           },
         },
          title: {
-          text: 'Nº de comentarios',
+          text: '',
           aling: 'left'
         },
         dataLabels: {
           enabled: false,
+        },
+        yaxis:{
+          title: {
+            text: 'Nº de comentarios'
+          }
+        },
+        xaxis:{
+          title: {
+            text: 'Géneros musicales'
+          }
         },
         plotOptions: {
           bar: {
@@ -77,7 +87,7 @@ export default {
       },
       series: [
         {
-          name: "Géneros musicales",
+          name: [],
           data: []
         }
       ]
@@ -145,5 +155,8 @@ export default {
 }
 #grafico{  
   background-image: linear-gradient(90deg, #5BC0BE,#6FFFE9) !important;
+}
+#titulo-card{
+  color:rgb(0, 0, 0) ;
 }
 </style>

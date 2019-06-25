@@ -1,5 +1,6 @@
 <template>
   <v-footer dark absolute="true">
+    <!--
     <v-card class="flex" flat tile>
       <v-card-title id="bottom" class="teal">
         <strong class="subheading">Encuentranos en en las siguientes plataformas.!</strong>
@@ -14,8 +15,9 @@
       <v-card-actions id="bottom" class="grey darken-3 justify-center">
         &copy;2019 — <strong>Vuetify</strong>
       </v-card-actions>
-    </v-card>
+    </v-card>-->
   </v-footer>
+
 </template>
 
 <script>

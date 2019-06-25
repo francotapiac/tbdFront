@@ -5,7 +5,7 @@
       <v-card elevation = 5>
 
       <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Popularidad en el tiempo artistas más comentados</v-toolbar-title>
+          <v-toolbar-title id="titulo-card"> Popularidad en el tiempo artistas más comentados</v-toolbar-title>
       </v-toolbar>
       
       <apexcharts 
@@ -68,11 +68,22 @@ export default {
           },
           colors: ['#77B6EA', '#545454'],
            title: {
-            text: 'Nº de comentarios',
+            text: '',
             align: 'left'
           },
           dataLabels: {
             enabled: true,
+          },
+          xaxis:{
+            title:{
+              text: 'Artistas más comentados'
+            }
+
+          },
+          yaxis:{
+              title:{
+              text: 'Nº de comentarios'
+            }
           },
           stroke: {
             curve: 'smooth'
