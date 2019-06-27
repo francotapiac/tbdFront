@@ -123,9 +123,10 @@ export default {
             icon: 'filter_tilt_shift',
             route: '/grafos',
             items: [
-                {title: 'Grafo 1', route: '/grafo1'},
-                {title: 'Grafo 2', route: '/grafo2'},
-                {title: 'Grafo 3', route: '/grafo3'},
+                {title: 'Usuarios populares por género', route: '/grafo1'},
+                {title: 'Usuarios populares por artista', route: '/grafo2'},
+                {title: 'Usuarios populares género más popular', route: '/grafo3'},
+                {title: 'Artistas y géneros', route: '/grafo4'}
 
             ]
         }

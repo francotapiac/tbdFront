@@ -17,11 +17,10 @@
 </template>
 
 <script>
-import InfoGenero  from '@/components/chartGenero/InfoGenero'
 
 
 export default {
-   components: {InfoGenero
+   components: {
 
     },
   data () {

@@ -13,6 +13,7 @@ import ArtistaGrafico3 from './views/ArtistaGrafico3.vue'
 import Grafo1 from  './views/Grafo1.vue'
 import Grafo2 from  './views/Grafo2.vue'
 import Grafo3 from  './views/Grafo3.vue'
+import Grafo4 from './views/Grafo4.vue'
 
 
 Vue.use(Router)
@@ -86,5 +87,10 @@ export default new Router({
       name: 'grafo3',
       component: Grafo3
     },
+    {
+      path: '/grafo4',
+      name: 'grafo4',
+      component: Grafo4
+    }
   ]
 })

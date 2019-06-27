@@ -8,7 +8,7 @@
     <!--Fila 1 -->
     <v-layout row wrap pb-5>
       <v-flex xs12 md12>
-        <graph2/>
+        <graph4/>
       </v-flex>
     </v-layout>
 
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import graph2  from '@/components/graphs/graph2.vue'
+import graph4  from '@/components/graphs/graph4.vue'
 
 
 export default {
-   components: {graph2
+   components: {graph4
 
     },
   data () {
