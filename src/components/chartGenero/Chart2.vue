@@ -13,7 +13,6 @@
 
 
 <script>
-
 import VueApexCharts from "vue-apexcharts";
 import axios from 'axios'
 import store from '@/store';
@@ -59,7 +58,6 @@ export default {
             bar: {
               horizontal: true,
               barHeight: '80%',
-
             },
           },
           title: {
@@ -73,7 +71,6 @@ export default {
             width: 1,
             colors: ["#fff"]
           },
-
           grid: {
             xaxis: {
               showLines: false
@@ -117,7 +114,6 @@ export default {
         }
       }
       },
-
       methods: {
     ...mapMutations(['mostrarLoading','ocultarLoading']),
  
@@ -134,19 +130,18 @@ export default {
         }
       })
       }catch{
-        consol.log(errror)
+        console.log(error)
       }
       finally{
         this.ocultarLoading()
       }
       
     },
-
     async actualizarComentarios(){
-      let cantidadComentarios  = []
+
       await axios.get('http://localhost:8080/genres/getGenreStadistic')
       .then((res)=>{
-        console.log(res.data)
+      
           this.series = [{
           name: 'Negativos',
           data: res.data.map(item => (item.negative * -100/item.total).toFixed(2))
@@ -159,12 +154,9 @@ export default {
       })
       
      // this.chartOptions.series = await cantidadComentarios
-      
-      console.log(cantidadComentarios)
+    
     }
-
   },
-
   created(){
     this.actualizarGeneros()
     this.actualizarComentarios()

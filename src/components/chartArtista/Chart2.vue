@@ -139,7 +139,7 @@ export default {
     },
 
     async actualizarComentarios(){
-      let cantidadComentarios  = []
+  
       await axios.get('http://localhost:8080/artists/getArtistStadistic')
       .then((res)=>{
         console.log(res.data)
@@ -156,7 +156,6 @@ export default {
       
      // this.chartOptions.series = await cantidadComentarios
       
-      console.log(cantidadComentarios)
     }
 
   },
