@@ -1,5 +1,10 @@
 <template>
+   <v-card elevation = 5>
+      <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card">Usuarios populares género más popular</v-toolbar-title>
+      </v-toolbar>
     <div id="chartdiv"></div>
+   </v-card>
 </template>
 
 
@@ -7,7 +12,7 @@
 <style>
 #chartdiv {
   width: 100%;
-height:500px;
+height:650px !important;
 }
 </style>
 

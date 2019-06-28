@@ -1,5 +1,10 @@
 <template>
+ <v-card elevation = 5>
+      <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card">Artistas y géneros</v-toolbar-title>
+      </v-toolbar>
     <div id="chartdiv4"></div>
+ </v-card>
 </template>
 
 
@@ -8,7 +13,7 @@
 <style>
 #chartdiv4 {
   width: 100%;
-  height: 500px
+  height: 500px !important;
 }
 
 </style>

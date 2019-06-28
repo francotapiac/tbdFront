@@ -1,35 +1,24 @@
 <template>
   <div class="home">
-<v-container grid-list-xl text-xs-center>
-
+  <v-container grid-list-xl text-xs-center>
     <!--Fila 1 -->
     <v-layout row wrap pb-5>
       <v-flex xs12 md12>
-    <p> Grafos</p>      
-    </v-flex>
+         <InfoGraph/> 
+      </v-flex>
     </v-layout>
-  
-
-
-</v-container>
-
+  </v-container>
   </div>
 </template>
 
+
 <script>
+  import InfoGraph  from '@/components/graphs/InfoGraph'
 
-
-export default {
-   components: {
-
-    },
-  data () {
-      return {
-       
-        
-    }
-    
+  export default {
+    components: {
+      InfoGraph
+      }
   }
-  
-}
+
 </script>
