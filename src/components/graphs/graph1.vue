@@ -42,7 +42,7 @@ export default {
       networkSeries.dataFields.children = "children";
 
       networkSeries.nodes.template.label.text = "{name}"
-      networkSeries.fontSize = 8;
+      networkSeries.fontSize = 12;
       networkSeries.linkWithStrength = 0;
 
       var nodeTemplate = networkSeries.nodes.template;
