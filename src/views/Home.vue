@@ -35,8 +35,9 @@
           </v-card>
         </v-flex>      
     -->
-
+<v-flex d-flex xs12 sm6 md4>
     <ScrollTwitter/>
+</v-flex>
 
 
        

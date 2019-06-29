@@ -1,37 +1,35 @@
 <template>
-<v-layout
-      id="scroll-target"
-      style="max-height: 620px"
-      class="scroll-y"
-    >
+<v-card>
+  <v-toolbar id="grafico">
+          <v-toolbar-title id="titulo-card" class ="font-weight-light">Twitter</v-toolbar-title>
+        </v-toolbar>
       <v-layout
-        v-scroll:#scroll-target="onScroll"
         column
         align-center
         justify-center
         style="height: 520px"
       >
       <v-flex d-flex xs10 sm4 md4>
-          <a class="twitter-timeline" href="https://twitter.com/TwitterMusic/timelines/393773266801659904?ref_src=twsrc%5Etfw">Artistas en Twitter</a> 
+          <a  class="twitter-timeline" data-height="480px" data-width="480px"  href="https://twitter.com/TwitterMusic?ref_src=twsrc%5Etfw">Artistas en Twitter</a> 
        </v-flex>
 
       </v-layout>
-    </v-layout>
+    </v-card>
     
 </template>
 
 
 <script>
   export default {
-    data: () => ({
-      offsetTop: 0,
-    }),
-
-    methods: {
-      onScroll (e) {
-        this.offsetTop = e.target.scrollTop
-      },
+    data(){
+         
+        return {
+          offsetTop: 0,
+  
+        }
     },
+
+
   }
 </script>
 

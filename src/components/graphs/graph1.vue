@@ -81,7 +81,7 @@ export default {
       async actualizarGrafo(){
          try{
             this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
-            await axios.get('http://localhost:3000/grafoUsuarioGenero')
+            await axios.get('http://localhost:8080/neo4j/usuarioGenero')
             .then(res=>{
                console.log(this.networkSeries)
                networkSeries.data  = res.data
