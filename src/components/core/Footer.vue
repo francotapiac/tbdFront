@@ -1,5 +1,5 @@
 <template>
-  <v-footer dark absolute="true">
+  <v-footer dark >
     <!--
     <v-card class="flex" flat tile>
       <v-card-title id="bottom" class="teal">

@@ -47,13 +47,13 @@ export default {
       networkSeries.linkWithStrength = 0;
 
       var nodeTemplate = networkSeries.nodes.template;
-      nodeTemplate.tooltipText = "{name}";
+      nodeTemplate.tooltipText = "Nombre: {name} \n Relevancia: {value} ";
       nodeTemplate.fillOpacity = 1;
       nodeTemplate.label.hideOversized = true;
       nodeTemplate.label.truncate = true;
 
       var linkTemplate = networkSeries.links.template;
-      linkTemplate.strokeWidth = 1;
+      linkTemplate.strokeWidth = 3;
       var linkHoverState = linkTemplate.states.create("hover");
       linkHoverState.properties.strokeOpacity = 1;
       linkHoverState.properties.strokeWidth = 2;
@@ -84,7 +84,6 @@ export default {
             this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
             await axios.get('http://localhost:8080/neo4j/generoPopular')
             .then(res=>{
-               console.log(this.networkSeries)
                networkSeries.data  = res.data
             })
          }catch{

@@ -9,7 +9,7 @@
         <v-list two-line>
           <template v-for="(artista, index) in topArtistas">
             <v-divider :key="index"></v-divider>
-            <v-list-tile :key="artista.artista" avatar @click="">
+            <v-list-tile :key="artista.artista"  avatar @click="clickArtista(artista.artista)">
               <v-list-tile-content >
                   <v-list-tile-title v-html="artista.artista"></v-list-tile-title>
                   <v-list-tile-sub-title>N° comentarios: {{artista.total}}</v-list-tile-sub-title>
@@ -23,10 +23,13 @@
       </v-card>
     </v-flex>
   </v-layout>
+  
 </template>
 
 <script>
 import axios from "axios";
+import store from '@/store';
+import {mapState, mapMutations} from "vuex";
 
   export default {
     data () {
@@ -40,6 +43,8 @@ import axios from "axios";
     },
 
     methods:{
+
+      ...mapMutations(['mostrarArtista','ocultarArtista','mostrarLoading','ocultarLoading']),
       async getTopArtista(){
         try{
           let artistas = await axios.get('http://localhost:8080/artists/popularArtists',{
@@ -57,6 +62,26 @@ import axios from "axios";
 
         finally{
           
+        }
+      },
+
+      async clickArtista(artista){
+        
+        try{
+          this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+          let listaArtista = await axios.get('http://localhost:8080/artists/')
+          listaArtista.data.forEach(element => {
+            if(element.name == artista){
+              console.log(element)
+              this.mostrarArtista({nombre:element.name,descripcion:element.info})
+              
+            }
+          });
+        }catch{
+          console.log(error)
+        }
+        finally{
+           this.ocultarLoading()
         }
       }
     },

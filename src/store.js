@@ -20,7 +20,14 @@ export default new Vuex.Store({
     },
     
     tipoInformacion: null,
-    filtroGrafico: ['comentario','sentimiento']
+    filtroGrafico: ['comentario','sentimiento'],
+    
+    dialogoTopArtista: {
+      nombre: '',
+      descripcion: '',
+      imagen: 'https://legismusic.com/wp-content/uploads/2018/05/alexby11-musica-de-fondo-180x180.png',
+      estado:false,
+    }
 
   },
 
@@ -47,8 +54,18 @@ export default new Vuex.Store({
     cambiarFechaInicio(state,fecha){
       state.fecha.fechaInicio = fecha
 
+    },
+
+    //Para mostrar detalle de artista
+    mostrarArtista(state,payload){
+      state.dialogoTopArtista.nombre = payload.nombre,
+      state.dialogoTopArtista.descripcion = payload.descripcion,
+      state.dialogoTopArtista.estado = true
+    },
+    
+    ocultarArtista(state){
+      state.dialogoTopArtista.estado = false
     }
-  
 
 
   },

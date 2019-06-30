@@ -7,6 +7,7 @@
         <v-container>
         <!--dialogo dinámico-->
         <Dialogs/>
+        <DialogsArtist/>
     </v-container>
     <Footer/>
     </v-content> 
@@ -19,11 +20,12 @@
 import Toolbar  from '@/components/core/Toolbar'
 import Footer  from '@/components/core/Footer'
 import Dialogs from '@/components/core/Dialogs'
+import DialogsArtist from '@/components/core/DialogsArtist'
 
 
 export default {
   name: 'App',
-  components: {Toolbar,Footer,Dialogs},
+  components: {Toolbar,Footer,Dialogs,DialogsArtist},
   data () {
     return {
       //
