@@ -3,7 +3,7 @@
     <v-flex xs12 sm12 offset-sm>
       <v-card pb-5 >
         <v-toolbar id="grafico">
-          <v-toolbar-title id="titulo-card" class ="font-weight-light"> Ranking de los artistas más comentados</v-toolbar-title>
+          <v-toolbar-title id="titulo-card"> Ranking de los artistas más comentados</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <v-list two-line>

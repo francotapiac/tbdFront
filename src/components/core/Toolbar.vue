@@ -148,6 +148,6 @@ export default {
 }
 
 #subitem{
-    background-color: #5BC0BE !important;
+    background-color: rgb(12, 19, 51) !important;
 }
 </style>

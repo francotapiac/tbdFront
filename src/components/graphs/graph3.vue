@@ -39,15 +39,16 @@ export default {
       networkSeries.dataFields.linkWith = "linkWith";
       networkSeries.dataFields.name = "name";
       networkSeries.dataFields.id = "name";
-      networkSeries.dataFields.value = "value";
+      networkSeries.dataFields.value = "followers";
       networkSeries.dataFields.children = "children";
+      networkSeries.dataFields.comentarios = "value";
 
       networkSeries.nodes.template.label.text = "{name}"
       networkSeries.fontSize = 12;
       networkSeries.linkWithStrength = 0;
 
       var nodeTemplate = networkSeries.nodes.template;
-      nodeTemplate.tooltipText = "Nombre: {name} \n Relevancia: {value} ";
+      nodeTemplate.tooltipText = "Nombre: {name} \n Comentarios: {comentarios} \n Seguidores: {value}";
       nodeTemplate.fillOpacity = 1;
       nodeTemplate.label.hideOversized = true;
       nodeTemplate.label.truncate = true;
