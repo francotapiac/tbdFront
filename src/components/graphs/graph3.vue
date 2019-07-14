@@ -85,6 +85,41 @@ export default {
             this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
             await axios.get('http://localhost:8080/neo4j/generoPopular')
             .then(res=>{
+
+                  
+             //     for (let index = 0; index < res.data.length; index++) {
+             //        console.log(res.data[i].followers)
+                   //  if(res.data[i].followers > max){
+                   //     max = res.data[i].followers;
+                   //     console.log(max);
+                   //  }
+           //       }
+
+
+                  for(var i= 0; i < res.data.length; i++){
+                        console.log(res.data[i].followers)
+                        res.data[i].followers= 6943705;
+                        console.log(res.data[i].followers)
+
+                      //  var valor= res.data[index].followers.shift()
+                      //  console.log(valor)
+                     
+
+                  //   for(var j=0; j <arregloChildrenActual.length; j++){
+                  //      let elementoChildrenActual = arregloChildrenActual[j]
+                  //            if(elementoChildrenActual.name == elementoChildrenSiguiente.name){
+                  //               res.data[k].children.splice(l,1)
+                  //               res.data[k].linkWith.push(elementoChildrenActual.name)
+                  //            }
+               //   }
+                  
+               }
+
+
+
+
+
+
                networkSeries.data  = res.data
             })
          }catch{
