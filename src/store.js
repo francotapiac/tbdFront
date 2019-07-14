@@ -25,7 +25,7 @@ export default new Vuex.Store({
     dialogoTopArtista: {
       nombre: '',
       descripcion: '',
-      imagen: 'https://legismusic.com/wp-content/uploads/2018/05/alexby11-musica-de-fondo-180x180.png',
+      imagen: '',
       estado:false,
     }
 
@@ -60,6 +60,7 @@ export default new Vuex.Store({
     mostrarArtista(state,payload){
       state.dialogoTopArtista.nombre = payload.nombre,
       state.dialogoTopArtista.descripcion = payload.descripcion,
+      state.dialogoTopArtista.imagen = payload.imagen,
       state.dialogoTopArtista.estado = true
     },
     

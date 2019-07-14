@@ -13,10 +13,10 @@
                     >
                     {{dialogoTopArtista.nombre}}
                 </v-card-title>
-                <v-layout>
+                <v-layout align-center justify-center>
                     <!--Imagen-->
                     <v-flex xs5>
-                        <v-img v-bind:src="dialogoTopArtista.imagen" height="110px" contain></v-img>
+                        <v-img v-bind:src="dialogoTopArtista.imagen"  height="110px" contain></v-img>
                     </v-flex>
                     <!--Descripción del artista-->
                     <v-flex xs7>

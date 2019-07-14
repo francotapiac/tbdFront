@@ -73,7 +73,7 @@ import {mapState, mapMutations} from "vuex";
           listaArtista.data.forEach(element => {
             if(element.name == artista){
               console.log(element)
-              this.mostrarArtista({nombre:element.name,descripcion:element.info})
+              this.mostrarArtista({nombre:element.name,descripcion:element.info,imagen:element.picture})
               
             }
           });
