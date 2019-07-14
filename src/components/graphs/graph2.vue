@@ -87,6 +87,18 @@ export default {
             this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
             await axios.get('http://localhost:8080/neo4j/usuarioArtista')
             .then(res=>{
+            
+               //Se crea nuevo atributo para guardar numero de seguidores de forma homogenea
+               //debido a que se borran datos cuando se conectan nodos repetidos
+               for(var z = 0; z < res.data.length; z++){
+                  let seguidores = 0
+                  for(var x = 0; x < res.data[z].children.length; x++){
+                     seguidores = seguidores + res.data[z].children[x].followers
+                  }
+                  res.data[z].followers = seguidores
+               }
+              
+
                 //Se recorre todo el json hasta la penultima posición
                for(var i= 0; i < res.data.length-1; i++){
                   let arregloChildrenActual = res.data[i].children 
@@ -96,18 +108,20 @@ export default {
                      //Para cada children se compara con los de las posición del json siguiente al actual
                      for(var k= i + 1; k < res.data.length; k++){
                         let arregloChildrenSiguiente = res.data[k].children
+                        let followers = 0
                         //Para cada posición siguiente se recorre su children
                         for(var l=0; l<arregloChildrenSiguiente.length; l++){
                            let elementoChildrenSiguiente = arregloChildrenSiguiente[l]
+                          
                            //Si el elemento del children actual con el siguiente tienen un nombre igual, 
                            // se borra el objeto en el siguiente y se entrega este elemento
                            //al linkWith de siguiente
                            if(elementoChildrenActual.name == elementoChildrenSiguiente.name){
                               res.data[k].children.splice(l,1)
                               res.data[k].linkWith.push(elementoChildrenActual.name)
+                              
                            }
-                        }
-
+                        } 
                      }
                   }
                   
