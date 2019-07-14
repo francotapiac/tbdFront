@@ -5,18 +5,15 @@
       width="500"
     >   
         <v-layout>
-            <v-card>
+            <v-card style="width:600px !important;">
                 <!--Titulo-->
-                <v-card-title
-                    class="headline grey lighten-2"
-                    primary-title
-                    >
-                    {{dialogoTopArtista.nombre}}
-                </v-card-title>
+                <v-toolbar id="grafico">
+                    <v-toolbar-title id="titulo-card">{{dialogoTopArtista.nombre}}</v-toolbar-title>
+                </v-toolbar>
                 <v-layout align-center justify-center>
                     <!--Imagen-->
                     <v-flex xs5>
-                        <v-img v-bind:src="dialogoTopArtista.imagen"  height="110px" contain></v-img>
+                        <v-img v-bind:src="dialogoTopArtista.imagen" id="imagenArtista"></v-img>
                     </v-flex>
                     <!--Descripción del artista-->
                     <v-flex xs7>
@@ -30,8 +27,7 @@
                 <v-card-actions class="justify-center">
                     <v-spacer></v-spacer>
                     <v-btn
-                        color="primary"
-                        flat
+                        id="boton"
                         @click="dialogoTopArtista.estado = false"
                     >
                         Cerrar
@@ -59,3 +55,13 @@ export default {
     
 }
 </script>
+
+<style>
+
+#imagenArtista{
+    border-radius:50%;
+    margin: 15px;
+    padding: 28px;
+}
+
+</style>
