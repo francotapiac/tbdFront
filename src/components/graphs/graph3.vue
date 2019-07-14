@@ -105,14 +105,7 @@ export default {
                       //  console.log(valor)
                      
 
-                  //   for(var j=0; j <arregloChildrenActual.length; j++){
-                  //      let elementoChildrenActual = arregloChildrenActual[j]
-                  //            if(elementoChildrenActual.name == elementoChildrenSiguiente.name){
-                  //               res.data[k].children.splice(l,1)
-                  //               res.data[k].linkWith.push(elementoChildrenActual.name)
-                  //            }
-               //   }
-                  
+                
                }
 
 
