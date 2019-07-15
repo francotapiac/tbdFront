@@ -1,6 +1,6 @@
 <template>
-  <v-footer dark >
-    <!--
+  <v-footer dark absolute="true">
+    
     <v-card class="flex" flat tile>
       <v-card-title id="bottom" class="teal">
         <v-spacer></v-spacer>
@@ -12,7 +12,7 @@
 
       <v-card-actions id="bottom" class="grey darken-3 justify-center">
       </v-card-actions>
-    </v-card>-->
+    </v-card>
   </v-footer>
 
 </template>
