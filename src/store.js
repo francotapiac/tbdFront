@@ -27,6 +27,16 @@ export default new Vuex.Store({
       descripcion: '',
       imagen: '',
       estado:false,
+    },
+
+    resumenGrafo: {
+      generoArtistaPopular: '',
+      generoArtistaComentado: '',
+      usuarioPopular: '',
+      seguidoresUsuario: 0,
+      cantidadSeguidores: 0,
+      cantidadComentarios:0
+
     }
 
   },
@@ -34,6 +44,16 @@ export default new Vuex.Store({
 
   mutations: {
     
+    //Para resumen de grafos
+
+    cambiarResumen(state,payload){
+      state.resumenGrafo.generoArtistaPopular = payload.gaPopular,
+      state.resumenGrafo.generoArtistaComentado = payload.gaComentado,
+      state.resumenGrafo.usuarioPopular = payload.usuarioPopular,
+      state.resumenGrafo.seguidoresUsuario = payload.seguidoresUsuario,
+      state.resumenGrafo.cantidadSeguidores = payload.cantidadSeguidores,
+      state.resumenGrafo.cantidadComentarios = payload.cantidadComentarios
+    },
     //Para calendario
     mostrarLoading(state,payload){
       state.loading.titulo = payload.titulo,

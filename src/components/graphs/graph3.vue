@@ -79,40 +79,42 @@ export default {
    }, //end mounted
 
    methods: {
-      ...mapMutations(['mostrarLoading','ocultarLoading']),
+      ...mapMutations(['mostrarLoading','ocultarLoading','cambiarResumen']),
       async actualizarGrafo(){
          try{
             this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+            this.cambiarResumen({gaPopular:'',gaComentado:'',usuarioPopular: '',seguidoresUsuario:'',
+               cantidadSeguidores:'',cantidadComentarios: ''})
             await axios.get('http://localhost:8080/neo4j/generoPopular')
             .then(res=>{
 
-                  
-             //     for (let index = 0; index < res.data.length; index++) {
-             //        console.log(res.data[i].followers)
-                   //  if(res.data[i].followers > max){
-                   //     max = res.data[i].followers;
-                   //     console.log(max);
-                   //  }
-           //       }
+               let seguidoresUsuarioPopu = 0 //dato a guardar para tabla grafo
+               let usuarioPopular= ''
+               let seguidoresTotales = 0
+               for(var i = 0; i < res.data[0].children.length; i++){
+                  seguidoresTotales = seguidoresTotales + res.data[0].children[i].followers
+                  //datos a guardar para tabla grafo
+                     if(res.data[0].children[i].followers > seguidoresUsuarioPopu){
+                        //También se guarda el usuario más popular
+                        usuarioPopular = res.data[0].children[i].name
+                        seguidoresUsuarioPopu = res.data[0].children[i].followers
+                     }
+               }
+              
 
-
-                  for(var i= 0; i < res.data.length; i++){
+                 for(var i= 0; i < res.data.length; i++){
                         console.log(res.data[i].followers)
                         res.data[i].followers= 6943705;
                         console.log(res.data[i].followers)
 
                       //  var valor= res.data[index].followers.shift()
                       //  console.log(valor)
-                     
+                      console.log( res.data.value)
+                      this.cambiarResumen({gaPopular:res.data[0].name,gaComentado:res.data[0].followers,usuarioPopular: usuarioPopular,seguidoresUsuario:seguidoresUsuarioPopu,
+               cantidadSeguidores:seguidoresTotales,cantidadComentarios: res.data[0].value})
 
                 
                }
-
-
-
-
-
-
                networkSeries.data  = res.data
             })
          }catch{

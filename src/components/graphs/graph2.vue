@@ -81,19 +81,31 @@ export default {
    }, //end mounted
 
    methods: {
-      ...mapMutations(['mostrarLoading','ocultarLoading']),
+      ...mapMutations(['mostrarLoading','ocultarLoading','cambiarResumen']),
       async actualizarGrafo(){
          try{
             this.mostrarLoading({titulo:'Accediendo a la información',color:'blue'})
+            this.cambiarResumen({gaPopular:'',gaComentado:'',usuarioPopular: '',seguidoresUsuario:'',
+            cantidadSeguidores:'',cantidadComentarios: ''})
             await axios.get('http://localhost:8080/neo4j/usuarioArtista')
             .then(res=>{
             
+               
                //Se crea nuevo atributo para guardar numero de seguidores de forma homogenea
-               //debido a que se borran datos cuando se conectan nodos repetidos
+               //debido a que se borran datos cuando se conectan nodos repetidos             
+               let seguidoresUsuarioPopu = 0 //dato a guardar para tabla grafo
+               let usuarioPopular= ''
                for(var z = 0; z < res.data.length; z++){
                   let seguidores = 0
                   for(var x = 0; x < res.data[z].children.length; x++){
                      seguidores = seguidores + res.data[z].children[x].followers
+
+                     //datos a guardar para tabla grafo
+                     if(res.data[z].children[x].followers > seguidoresUsuarioPopu){
+                        //También se guarda el usuario más popular
+                        usuarioPopular = res.data[z].children[x].name
+                        seguidoresUsuarioPopu = res.data[z].children[x].followers
+                     }
                   }
                   res.data[z].followers = seguidores
                }
@@ -126,6 +138,30 @@ export default {
                   }
                   
                }
+               //Datos a guardar para tabla grafo
+               let seguidoresTotales = 0
+               let comentariosTotales = 0
+               let seguidoresTemporal = 0
+               let comentariosTemporal = 0
+               let generoPupular = ''
+               let generoComentado = ''
+               for(var f = 0; f < res.data.length; f++){
+                  seguidoresTotales = seguidoresTotales + res.data[f].followers
+                  comentariosTotales = comentariosTotales + res.data[f].value
+                  if(res.data[f].followers > seguidoresTemporal){
+                     console.log(res.data[f].name)
+                     generoPupular = res.data[f].name
+                     seguidoresTemporal = res.data[f].followers
+
+                  }
+                  if(res.data[f].value > comentariosTemporal){
+                     generoComentado = res.data[f].name
+                     comentariosTemporal = res.data[f].value
+                  }
+            
+               }
+               this.cambiarResumen({gaPopular:generoPupular,gaComentado:generoComentado,usuarioPopular: usuarioPopular,seguidoresUsuario:seguidoresUsuarioPopu,
+               cantidadSeguidores:seguidoresTotales,cantidadComentarios: comentariosTotales})
                networkSeries.data  = res.data
             })
          }catch{
