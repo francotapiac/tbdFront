@@ -65,7 +65,7 @@ import {mapState} from "vuex";
         },
         {
           id: 2,
-          name: 'Resumen de génenero',
+          name: 'Resumen de género',
           contenido1: 'Género más popular:',
           contenido2: 'Género más comentado:',
           dato1: '',

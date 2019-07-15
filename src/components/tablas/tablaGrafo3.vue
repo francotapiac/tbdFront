@@ -31,7 +31,7 @@
               <v-list-tile>
                 <v-list-tile-content>{{props.item.contenido2}}</v-list-tile-content>
                 <div v-if="props.item.id == 1">{{resumenGrafo.cantidadComentarios}}</div>
-                <div v-else-if="props.item.id == 2">{{resumenGrafo.generoArtistaComentado}}</div>
+                
                 <div v-else-if="props.item.id == 3">{{resumenGrafo.seguidoresUsuario}}</div>
               </v-list-tile>
          
@@ -65,9 +65,9 @@ import {mapState} from "vuex";
         },
         {
           id: 2,
-          name: 'Resumen de génenero',
+          name: 'Resumen de género',
           contenido1: 'Género más popular:',
-          contenido2: 'Cantidad de usuarios alcanzados:',
+     
           dato1: '',
           dato2: ''
         

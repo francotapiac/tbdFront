@@ -104,7 +104,7 @@ export default {
 
                  for(var i= 0; i < res.data.length; i++){
                         console.log(res.data[i].followers)
-                        res.data[i].followers= 6943705;
+                        res.data[i].followers= seguidoresUsuarioPopu;
                         console.log(res.data[i].followers)
 
                       //  var valor= res.data[index].followers.shift()
@@ -115,6 +115,7 @@ export default {
 
                 
                }
+              
                networkSeries.data  = res.data
             })
          }catch{
