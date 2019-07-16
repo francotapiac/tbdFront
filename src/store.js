@@ -37,13 +37,35 @@ export default new Vuex.Store({
       cantidadSeguidores: 0,
       cantidadComentarios:0
 
-    }
+    },
+
+    resumenGrafoArtistaGeneros: {
+      totalComentariosGenero: 0,
+      totalComentariosArtista: 0,
+      generoPopu: '',
+      artistaPopu: '',
+      comentarioGeneroPopu: 0,
+      comentarioArtistaPopu: 0,
+    },
+
+    grafo1: null,
+    grafo2: null,
+    grafo3: null,
+    grafo4: null,
 
   },
 
 
   mutations: {
     
+    cambiarResumenArtistaGenero(state,payload){
+      state.resumenGrafoArtistaGeneros.totalComentariosGenero = payload.totalComentariosGenero,
+      state.resumenGrafoArtistaGeneros.totalComentariosArtista = payload.totalComentariosArtista,
+      state.resumenGrafoArtistaGeneros.generoPopu = payload.generoPopu,
+      state.resumenGrafoArtistaGeneros.artistaPopu = payload.artistaPopu,
+      state.resumenGrafoArtistaGeneros.comentarioGeneroPopu = payload.comentarioGeneroPopu,
+      state.resumenGrafoArtistaGeneros.comentarioArtistaPopu = payload.comentarioArtistaPopu
+    },
     //Para resumen de grafos
 
     cambiarResumen(state,payload){
@@ -86,6 +108,22 @@ export default new Vuex.Store({
     
     ocultarArtista(state){
       state.dialogoTopArtista.estado = false
+    },
+
+    cambiarGrafo1(state,payload){
+      state.grafo1 = payload
+    },
+
+    cambiarGrafo2(state,payload){
+      state.grafo2 = payload
+    },
+
+    cambiarGrafo3(state,payload){
+      state.grafo3 = payload
+    },
+
+    cambiarGrafo4(state,payload){
+      state.grafo4 = payload
     }
 
 
