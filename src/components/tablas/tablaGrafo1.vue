@@ -57,8 +57,8 @@ import {mapState} from "vuex";
         {
           id: 1,
           name: 'Resumen general',
-          contenido1: 'Total de seguidores contados:',
-          contenido2: 'Total de cometarios contados:',
+          contenido1: 'Total de seguidores:',
+          contenido2: 'Total de cometarios:',
           dato1: '',
           dato2: ''
 
